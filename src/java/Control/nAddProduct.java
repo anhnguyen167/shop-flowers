@@ -9,7 +9,7 @@ import BEAN.Product;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-@WebServlet(name = "ViewAllFlowerInManager", urlPatterns = {"/ViewAllFlowerInManager"})
-public class ViewAllFlowerInManager extends HttpServlet {
+@WebServlet(name = "nAddProduct", urlPatterns = {"/nAddProduct"})
+public class nAddProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +36,11 @@ public class ViewAllFlowerInManager extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productDAO = new ProductDAO();
-        int type = Integer.parseInt(request.getParameter("type"));
-        ArrayList<Product> listSPA = productDAO.getProductsByType(type);
-        request.setAttribute("listSPA", listSPA);
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/viewAllFlowerInManager.jsp");
-        requestDispatcher.forward(request, response);
+        String url="WEB-INF/jsp/addProduct.jsp";
+        Product product= new Product();
+        request.setAttribute("product", product);
+        RequestDispatcher rq= request.getRequestDispatcher(url);
+        rq.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

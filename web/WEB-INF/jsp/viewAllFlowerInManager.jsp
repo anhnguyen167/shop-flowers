@@ -12,18 +12,45 @@
         <title>Flowers Delivery | Bunches</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link href="<%= request.getContextPath()%>/css/tt.css" rel="stylesheet" type="text/css"/>
+        <style>
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            #search-form {
+                position: relative;
+
+            }
+            .search-data.show {
+                visibility: unset;
+            }
+            .search-data {
+                position: absolute;
+                background: pink;
+                top: 40px;
+                width: 300px;
+                z-index: 100;
+                visibility: hidden;
+            }
+
+
+        </style>
     </head>
     </head>
     <body>
         <div id="header">
-        <div id="left">
-          <form class="search-form">
-            <input type="text" name="search" placeholder="Search..">
-          </form>
-        </div>
+            <div id="left">
+                <div class="form-inline" id="search-form">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
+            </div>
         <div id="middle">
-          <a href=""> <img src="Hoa/logo.png"> </a>
+          <a href="nManager"> <img src="Hoa/logo.png"> </a>
         </div>
         <div id="right">
           <ul class="header-options">
@@ -68,10 +95,10 @@
 					<li><a href="#"> <b> Orange Tone </b> </a></li>
 				</ul>
 			</li>
-			<li><a href="#"> <b> Flowers Box </b> </a></li>
-			<li><a href="#"> <b> Flowers Basket </b> </a></li>
-			<li><a href="#"> <b> Bouquets </b> </a></li>
-			<li><a href="#"> <b> Flowers Shelf </b> </a></li>
+                        <li><a href="ViewAllFlowerInManager?type=3"> <b> Flowers Box </b> </a></li>
+                        <li><a href="ViewAllFlowerInManager?type=1"> <b> Flowers Basket </b> </a></li>
+                        <li><a href="ViewAllFlowerInManager?type=2"> <b> Bouquets </b> </a></li>
+                        <li><a href="ViewAllFlowerInManager?type=4"> <b> Flowers Shelf </b> </a></li>
 		</ul>
 	</div>	
         
@@ -110,8 +137,34 @@
             </div>	
         </c:forEach>
         <div style="clear: both;"></div>
+        <br>
         <footer>
 		<image src="Hoa/footer.png" style="width: 100% ;height :30%">
 	</footer>
     </body>
+    <script>
+    $(function () {
+        // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+        $('#search-input').change(function (e) {
+            // RAN AFTER your search button is clicked
+            e.preventDefault();
+            // prevent your page is reloaded
+            const text = $('#search-input').val();
+            // get text in your input
+            $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                $('.search-data').addClass('show');
+                $('#search-data').empty();
+                data.forEach(item => {
+                    const ten = item.product_name;
+                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                    $('#search-data').append(str);
+
+                });
+            })
+        });
+        $('body').click(function () {
+            $('.search-data').removeClass('show');
+        })
+    })
+</script>
 </html>

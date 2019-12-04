@@ -1,11 +1,10 @@
 <%-- 
-    Document   : editProduct
-    Created on : Dec 4, 2019, 12:18:37 AM
+    Document   : addProduct
+    Created on : Dec 4, 2019, 1:18:47 PM
     Author     : Admin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -104,53 +103,59 @@
                         <li><a href="#"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="ViewAllFlowerInManager?type=3"> <b> Flowers Box </b> </a></li>
-                <li><a href="ViewAllFlowerInManager?type=1"> <b> Flowers Basket </b> </a></li>
-                <li><a href="ViewAllFlowerInManager?type=2"> <b> Bouquets </b> </a></li>
-                <li><a href="ViewAllFlowerInManager?type=4"> <b> Flowers Shelf </b> </a></li>
+                <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
+                <li><a href="ViewAll?type=1"> <b> Flowers Basket </b> </a></li>
+                <li><a href="ViewAll?type=2"> <b> Bouquets </b> </a></li>
+                <li><a href="ViewAll?type=4"> <b> Flowers Shelf </b> </a></li>
             </ul>
         </div>	
         <div class="clear"></div>
 
 
         <div style="clear: both;"></div>
-        <div class="Arow1">
-            <div class="Aanhhoa1">
-                <img src="<%= request.getContextPath()%>/${product.image}" >
-            </div>
-        </div>	
+        <h1 style="text-align: center;"> 
+		ADD New Product
+	</h1>
         <div class="Arow1">
             <form method="POST">
                 <br>
                 <table border="1">
+                    <br>
+                    <div class="fix-post2" style="font-size:25px; text-decoration:none; text-align:left">
+                        <b> Image : </b>
+                        <input type="file" name="image" value="${product.product_name}" class="btn-file"/>
+                    </div>
                     <tr>
-                    <input type="text" name="image" value="${product.image}" style="visibility:hidden;">
-                    <input type="text" name="description" value="${product.description}" style="visibility:hidden;">
-                    </tr>
-                    <tr>
-                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> ID : </b> </td>
-                        <td><input type="text" name="id" value="${product.id}"></td>
-                    </tr>
-                    <tr>
-                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Tên : </b> </td>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Name : </b> </td>
                         <td><input type="text" name="product_name" value="${product.product_name}"></td>
                     </tr>
                     <tr>
-                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Giá : </b> </td>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Price: </b> </td>
                         <td><input type="text" name="price" value="${product.price}"></td>
                     </tr>
                     <tr>
-                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Loại : </b> </td>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Type : </b> </td>
                         <td><input type="text" name="type" value="${product.type}"></td>
                     </tr>
                     <tr>
-                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Trạng Thái : </b> </td>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Color : </b> </td>
+                        <td><input type="text" name="color" value="${product.color}"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> State : </b> </td>
                         <td><input type="text" name="state" value="${product.state}"></td>
+                    </tr>
+<!--                    <tr>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Image : </b> </td>
+                        <td><input type="text" name="image" value="${product.image}"></td>
+                    </tr>-->
+                    <tr>
+                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Description : </b> </td>
+                        <td><input type="text" name="description" value="${product.description}"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button type="submit" formaction="EditProducts" class="btnEdit">Edit</button></td>
+                        <td><button type="submit" formaction="AddProduct" class="btnEdit">ADD</button></td>
                     </tr>
                 </table>
             </form>

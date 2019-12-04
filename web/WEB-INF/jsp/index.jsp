@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div id="middle">
-                <a href="WEB-INF/jsp/index.jsp"> <img src="Hoa/logo.png"> </a>
+                <a href="GetFlowers"> <img src="Hoa/logo.png"> </a>
             </div>
             <div id="right">
                 <ul class="header-options">
@@ -93,10 +93,10 @@
                         <li><a href="#"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
-                <li><a href="#"> <b> Flowers Box </b> </a></li>
-                <li><a href="#"> <b> Flowers Basket </b> </a></li>
-                <li><a href="#"> <b> Bouquets </b> </a></li>
-                <li><a href="#"> <b> Flowers Shelf </b> </a></li>
+                <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
+                <li><a href="ViewAll?type=1"> <b> Flowers Basket </b> </a></li>
+                <li><a href="ViewAll?type=2"> <b> Bouquets </b> </a></li>
+                <li><a href="ViewAll?type=4"> <b> Flowers Shelf </b> </a></li>
             </ul>
         </div>	
 
@@ -198,6 +198,7 @@
             </div>	
         </c:forEach>
         <div style="clear: both;"></div>
+        <br>
     <footer>
         <image src="Hoa/footer.png" style="width: 100% ;height :30%">
     </footer>

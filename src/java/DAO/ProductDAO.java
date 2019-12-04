@@ -251,6 +251,11 @@ public class ProductDAO extends connectDB{
 //                Product p = productDAO.getProductById(12);
 //                p.setProduct_name(p.getProduct_name() + "ANHHH");
 //                productDAO.updateProduct(p);
+                  Product product= new Product("anh", "/Hoa/Basket/12.jpg", 1, 1, 1, 1, "1");
+                  if(productDAO.insertProduct(product)==true){
+                      System.out.println("YESSSS");
+                  }
+                  
 	}
         
 }
