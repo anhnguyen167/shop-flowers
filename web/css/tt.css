@@ -1,0 +1,311 @@
+.Arow1{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 100px;
+    float: left;
+    width: 40%;
+    height: 700px;
+}
+.addFlower{
+    position: relative;
+    float: left;
+    width: 40%;
+    height: 700px;
+}
+.addFlower1{
+    position: relative;
+    float: left;
+    width: 30%;
+    height: 700px;
+}
+.Aanhhoa1 img{
+    width: 100%;
+    height: 570px;
+    margin-left: 35px;
+    margin-bottom: 80px;
+}
+.anhhoa1 img{
+    width: 93%;
+    height: 335px;
+    margin-left: 35px;
+    margin-bottom: 80px;
+}
+.anhhoa2 img{
+    width: 325px;
+    height: 250px;
+    margin-left: 35px;
+    margin-bottom: 100px;
+}
+.rowh{
+    float: left;
+    margin-left: 20px;
+}
+#seachTT{
+    float: left;
+    margin-left:2%;
+    margin-top: 100px;
+}
+#logo{
+    float: left;
+    width: 25% ;
+    margin-left: 10%;
+ }
+#slogan{
+	width: 25%;
+    float: right;
+    margin-right: 0%;
+}
+.row1{
+    position: relative;
+    margin-top: 40px;
+    float: left;
+    width: 24%;
+    height: 500px;
+}
+.row3{
+    position: relative;
+    margin-top: 40px;
+    float: left;
+    width: 24%;
+    height: 500px;
+}
+
+.row2{
+    position: relative;
+    margin-top: 40px;
+    float: left;
+    width: 24%;
+    height: 415px;
+}
+.anhhoa1asu{
+	height: 165px;
+    font-family: monospace;
+    color: black;
+    font-size: 30px;
+    position: absolute;
+    bottom: 0px;
+    margin-left: 50px;
+	text-decoration: none;
+}
+.deleteFlower{
+    position: relative;
+	width: 6px;
+	height: 6px;
+	float: left;
+}
+.flowerInf{
+	height: 40%;
+}
+.flowerED{
+	height: 33%;
+}
+.flowerEdit{
+	width: 40%;
+	float: left;
+}
+.flowerDelete{
+	width: 30%;
+	height: 24px;
+	margin-top: 7px;
+	margin-left: 3px;
+	float: left;
+}
+#menu{
+margin-bottom: 15px;
+margin-top: 15px;
+
+}
+#menu ul{
+    list-style-type: none;
+    background: pink;
+    text-align: center;
+}
+#menu ul li{
+    color: #f1f1f1;
+    display: inline-table;
+    width:  200px;
+    height: 60px;
+    line-height: 60px;
+    position: relative;
+	text-decoration:none;
+	font-size: 22px;
+}
+#menu ul li a {
+    color: #f1f1f1;
+    text-decoration-style: none;
+    display: block;
+	text-decoration:none;
+}
+#menu ul li a:hover{
+    background: #f1f1f1;
+    color: #333;
+	text-decoration:none;
+}
+#menu ul li > .sub-menu{
+    display: none;
+    position: absolute;
+}
+#menu ul li:hover .sub-menu{
+    display: block;
+    z-index: 2;
+}
+#menu-mobile{
+    display: none;
+}
+#seach-mobile{
+    display: none;
+}
+@media only screen and (max-width: 1024px){
+    #menu{
+        display: none;
+    }
+    #seachTT{
+        display: none;
+    }
+    #slogan{
+        display: none;
+    }
+    #seach-mobile{
+        float: left;
+        display: inline;
+        position: fixed;
+    }
+    #menu-mobile{
+        float: left;
+        display: inline;
+        position: fixed;
+    }
+
+}
+.btnEdit {
+      width: 100px;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 4px;
+      outline:none;
+      padding: 12px 14px;
+      transition: 0.6s ease-in-out;
+	  float: right;
+}
+.btnAdd {
+      width: 100px;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 4px;
+      outline:none;
+      padding: 5px 5px;
+	  float: right;
+}
+#header{
+	text-rendering: auto;
+	background: black;
+}
+img{
+	text-align: center;
+	float: left;
+}
+#left{
+	top:0;
+	text-align: left;
+	float: left;
+	width: 30%;
+	
+}
+#middle{
+	float: left;
+	width: 40%;
+	text-align: center;
+}
+#right{
+	top: 0;
+	text-align: right;
+	float: left;
+	width: 30%;
+	font-size: 16px;
+}
+input[type="text"] {
+      width: 200px;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 4px;
+      outline:none;
+      padding: 12px 14px;
+      transition: 0.6s ease-in-out;
+}
+body{
+	margin: 5px;
+}
+.clear{
+	clear: both;
+}
+*, ::after, ::before{
+	box-sizing: inherit;
+}
+.header-options{
+	font-size: .9em;
+	list-style: none;
+	margin-bottom: 0;
+}
+.header-options li:first-of-type{
+	border: 0;
+}
+.header-options li{
+	border-left: 1px solid #deele3;
+	display: inline-block;
+	padding: 0 .5em;
+}
+#headerName{
+	width: 20%;
+	float: left;
+}
+#headerViewOrder{
+	width: 20%;
+	float: left;
+}
+#headerAddFlowers{
+	width: 20%;
+	float: left;
+}
+#headerSignOut{
+	width: 20%;
+	float: left;
+}
+#headerSignIn{
+	width: 33%
+	float: right;
+}
+#contact-us{
+	width: 33%;
+	float: right;
+}
+#checkout-icon{
+	width: 33%;
+	float: right;
+}
+a, a:hover{
+	color: #8a979e;
+}
+.header-options li i{
+	display: inline-block;
+	font-size: inherit;
+	text-rendering: auto;
+
+}
+.bar{
+	display: none;
+}
+@media only screen and (max-width: 1300px){
+	#headerSignIn{
+		display: none;
+	}
+	#contact-us{
+		display: none;
+	}
+	#checkout-icon{
+		display: none;
+	}
+	.bar{
+		text-align:  right;
+		display: inline;
+	}
+}
