@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@page import="BEAN.User"%>
 <%@page import="BEAN.BasketDetail"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="BEAN.Basket"%>
@@ -30,10 +31,27 @@
         </div>
         <div id="right">
           <ul class="header-options">
-            <li id="headerSignIn" >
-              <a href="#">Sign In</a>
-            </li>
-            <li id="contact-us">
+              
+            <% String signIn = ""; %>
+                    <% if(session.getAttribute("user") == null){%>
+                    <% signIn = "Sign In"; }%>
+                    <li id="headerSignIn" >
+                        <a href="<%= request.getContextPath()%>/login"><%= signIn %></a>
+                    </li>
+                    <% String signOut = ""; %>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% signOut = "Sign Out"; }%>
+                    <li id="headerSignOut" >
+                        <a href="SignOut"><%= signOut %></a>
+                    </li>
+                    <% String name = ""; %>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% User user = (User)session.getAttribute("user"); %>
+                    <% name = user.getUsername(); }%>
+                    <li id="profile" >
+                        <a href="#"><%= name %></a>
+                    </li>
+             <li id="contact-us">
               <a  href="#">
                 <i class="fas fa-phone" aria-hidden="true"></i>
                 <span>03896 15656</span>

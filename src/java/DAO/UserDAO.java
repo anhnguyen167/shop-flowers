@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tools.EncryptionSHA1;
 
 
@@ -108,6 +110,21 @@ public class UserDAO extends DAOConnector{
 		return user;
 	}
         
+        public boolean checkUserExist(String username){
+            String sql = "SELECT id FROM users WHERE username=?";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    return true;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return false;
+        }
+        
         public User getUserById(int id){
             User user = new User();
 		String sql = "SELECT * FROM `users` WHERE id=?";
@@ -132,9 +149,10 @@ public class UserDAO extends DAOConnector{
 		}
 		return user;
         }
+      
 	public static void main(String[] args) {
 		UserDAO dao = new UserDAO();
-		User user = new User("admin", "654321", "Nguyen Thi Minh Phuong", "Ha Noi", "phuong@gmail.com", "0389615656", 0);
+		User user = new User("admin", "12345", "Nguyen Thi Minh Phuong", "Ha Noi", "phuong@gmail.com", "0389615656", 0);
 		if(dao.insertUser(user) == true) {
 			System.out.println("OK");
 		}

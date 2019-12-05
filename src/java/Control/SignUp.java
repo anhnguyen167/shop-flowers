@@ -77,7 +77,8 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        String regrex = "";
+        String regrex_mail = "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$";
+        String regrex_phone = "(09|01[2|6|8|9])+([0-9]{8})";
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String retypedPass = request.getParameter("password2");
@@ -87,15 +88,25 @@ public class SignUp extends HttpServlet {
         String phone = request.getParameter("phone");
         int role = 1;
         UserDAO udao = new UserDAO();
-        if(!password.equals(retypedPass)){
+        if(udao.checkUserExist(username) == true){
+            request.setAttribute("error_username", "username is existed");
             RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/SignUp.jsp");
             requestDispatcher.forward(request, response);
-        }else if(email.matches(regrex)){
+        }else if(!password.equals(retypedPass)){
+            request.setAttribute("error_pass", "retyped password doesn't match with password");
             RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/SignUp.jsp");
             requestDispatcher.forward(request, response);
-        }else if(udao.checkUser(username, password) == null){
+        }else if(!email.matches(regrex_mail)){
+            request.setAttribute("error_email", "email is invalid");
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/SignUp.jsp");
+            requestDispatcher.forward(request, response);
+        }else if(!phone.matches(regrex_phone)){
+            request.setAttribute("error_phone", "phone is invalid");
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/SignUp.jsp");
+            requestDispatcher.forward(request, response);
+        }
+        else{
             User user = new User(username, password, fullname, address, email, phone, role);
-            System.out.println("HAAAAAAAAAAAA");
             udao.insertUser(user);
             RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
             requestDispatcher.forward(request, response);

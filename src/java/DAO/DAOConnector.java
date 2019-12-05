@@ -8,7 +8,7 @@ public class DAOConnector {
 	public static Connection con;
 	public static void getInstance() {
 		if(con == null) {
-			String dbName = "flowershop";
+			String dbName = "shop";
 			String username = "root";
 			String password = "";
 			String className = "com.mysql.jdbc.Driver";
