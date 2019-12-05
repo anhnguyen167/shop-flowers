@@ -1,3 +1,4 @@
+<%@page import="BEAN.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -57,6 +58,13 @@
                     </li>
                     <li id="headerSignOut" >
                         <a href="SignOut">Sign Out</a>
+                    </li>
+                    <% String name = ""; %>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% User user = (User)session.getAttribute("user"); %>
+                    <% name = user.getUsername(); }%>
+                    <li id="profile" >
+                        <a href="#"><%= name %></a>
                     </li>
                     <li id="contact-us">
                         <a  href="#">
