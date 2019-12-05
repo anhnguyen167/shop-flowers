@@ -7,81 +7,56 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link href="<%= request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"/>
-        <link href="<%= request.getContextPath()%>/css/util.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-<div class="limiter">
-<div class="container-login100">
-<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-<form class="login100-form validate-form">
-<span class="login100-form-title p-b-33">
-Account Login
-</span>
-<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-<input class="input100" type="text" name="email" placeholder="Email">
-<span class="focus-input100-1"></span>
-<span class="focus-input100-2"></span>
-</div>
-<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-<input class="input100" type="password" name="pass" placeholder="Password">
-<span class="focus-input100-1"></span>
-<span class="focus-input100-2"></span>
-</div>
-<div class="container-login100-form-btn m-t-20">
-<button class="login100-form-btn">
-Sign in
-</button>
-</div>
-<div class="text-center p-t-45 p-b-4">
-<span class="txt1">
-Forgot
-</span>
-<a href="#" class="txt2 hov1">
-Username / Password?
-</a>
-</div>
-<div class="text-center">
-<span class="txt1">
-Create an account?
-</span>
-<a href="#" class="txt2 hov1">
-Sign up
-</a>
-</div>
-</form>
-</div>
-</div>
-</div>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/Login.css">
+	<title>Login</title>
+</head>
+<body>
 
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	
+	<div id="id01" class="modal">
+    	<div class="div-login">
+       		<form class="modal-content animate" action="AuthServlet" method="post">
+    			<div class="imgcontainer">
+      				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
+      				<img src="Hoa/small_logo.png" alt="Avatar" class="avatar">
+    			</div>
 
-<script src="vendor/animsition/js/animsition.min.js" type="text/javascript"></script>
+	    		<div class="container">
+	      			<label for="uname"><b>Username</b></label>
+      				<input type="text" placeholder="Enter Username" name="uname" required>
 
-<script src="vendor/bootstrap/js/popper.js" type="text/javascript"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+      				<label for="psw"><b>Password</b></label>
+      				<input type="password" placeholder="Enter Password" name="psw" required>
+        			
+        			<label>
+        				<input type="checkbox" checked="checked" name="remember"> Remember me
+		    		</label>
+        		
+      				<button type="submit">Login</button>
+      			      		
+	    		</div>
 
-<script src="vendor/select2/select2.min.js" type="text/javascript"></script>
+	    		<div class="container" style="background-color:#f1f1f1">
+      				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      				<span class="psw"><a href="#">SignUp?</a></span>
+    			</div>
+		  	</form>
+		</div>
+	</div>
 
-<script src="vendor/daterangepicker/moment.min.js" type="text/javascript"></script>
-<script src="vendor/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+	<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
 
-<script src="vendor/countdowntime/countdowntime.js" type="text/javascript"></script>
-
-<script src="js/main.js" type="text/javascript"></script>
-
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="text/javascript"></script>
-<script type="text/javascript">
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'UA-23581568-13');
+		// Khi người dùng nhấp vào bất cứ nơi nào bên ngoài phương thức, thì đóng LoginForm lại
+		window.onclick = function(event) {
+    		if (event.target == modal) {
+        		modal.style.display = "none";
+    		}
+		}
 	</script>
-
 
 </body>
 </html>

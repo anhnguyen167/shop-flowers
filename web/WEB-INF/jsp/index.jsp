@@ -55,6 +55,9 @@
                     <li id="headerSignIn" >
                         <a href="<%= request.getContextPath()%>/login">Sign In</a>
                     </li>
+                    <li id="headerSignOut" >
+                        <a href="SignOut">Sign Out</a>
+                    </li>
                     <li id="contact-us">
                         <a  href="#">
                             <i class="fas fa-phone" aria-hidden="true"></i>
@@ -62,12 +65,15 @@
                         </a>
                     </li>
                     <li id="checkout-icon">
-                        <a href="#">
+                            <% String checkout = "(0)"; %>
+                            <% if(session.getAttribute("quantity") != null){%>
+                            <% int quantity = Integer.parseInt(session.getAttribute("quantity").toString()); %>
+                            <% if(quantity > 9) checkout = "(9+)";
+                            else checkout = "(" + quantity + ")";} %>
                             <i class="fas fa-shopping-basket" aria-hidden="true">
                             </i>
                             <span>Checkout</span>
-                            (0)
-                        </a>
+                            <%=checkout%>
                     </li>
 
                 </ul>

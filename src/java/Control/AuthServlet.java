@@ -5,10 +5,16 @@
  */
 package Control;
 
+import BEAN.Basket;
+import BEAN.User;
+import DAO.BasketDAO;
+import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
+@WebServlet({"/AuthServlet"})
 public class AuthServlet extends HttpServlet {
 
     /**
@@ -80,23 +87,43 @@ public class AuthServlet extends HttpServlet {
         //2. Lay Username, password tu form dang nhap
         //3. Kiem tra tai khoan
         //4. Hien thong bao that bai hoac redirect ve trang chu neu thanh cong
-        String username = "";
-        String password = "";
-        if (username.equals("admin") && password.equals("123456")){
+        String username = request.getParameter("uname");
+        String password = request.getParameter("psw");
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.checkUser(username, password);
+        if (user != null && user.getRole() == 1){
             HttpSession session = request.getSession();
-            session.setAttribute("id", "10001");
+            session.setAttribute("user", user);
             request.setAttribute("islogin", true);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+            Basket basket = initBasket(user);
+            session.setAttribute("basket", basket);
+            ArrayList<BEAN.BasketDetail> list = basket.getBasketDetail();
+            int quantity = 0;
+            if(list != null) quantity = list.size();
+            session.setAttribute("quantity", quantity);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
             requestDispatcher.forward(request, response);
-        } else if (username.equals("admin2") && password.equals("123456")){
+        } else if (user != null && user.getRole() == 0){
             HttpSession session = request.getSession();
-            session.setAttribute("id", "10002");
+            session.setAttribute("user", user);
             request.setAttribute("islogin", true);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/managerIndex.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/manager.jsp");
             requestDispatcher.forward(request, response);
         } else {
-            
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+            requestDispatcher.forward(request, response);
         }
+    }
+    private Basket initBasket(User user){
+            BasketDAO basketDAO = new BasketDAO();
+            Basket basket = basketDAO.getBasketByUserId(user);
+            if(basket == null){
+                basket = new Basket();
+                basket.setUser(user);
+                basketDAO.createBasket(basket);
+                System.out.println("vao ham initBasket");
+            }
+            return basket;
     }
 
 }

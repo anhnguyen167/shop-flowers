@@ -5,12 +5,15 @@
  */
 package Control;
 
+import BEAN.Basket;
+import BEAN.BasketDetail;
 import BEAN.Product;
+import BEAN.User;
+import DAO.BasketDetailDAO;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "GetFlowers", urlPatterns = {"/GetFlowers"})
-public class GetFlowers extends HttpServlet {
+@WebServlet(name = "AddToBasket", urlPatterns = {"/AddToBasket"})
+public class AddToBasket extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,28 +40,7 @@ public class GetFlowers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        System.out.println(request.getQueryString());
-//        HttpSession session = request.getSession();
-//        boolean isLogin = session.getAttribute("islogin") != null ? (boolean)session.getAttribute("islogin") : false;
-//        if (!isLogin) {
-//            session = request.getSession(true);
-//            System.out.println(session.getId());
-//        } else {
-//            //xu ly khi ma nguoi dung da dang nhap    
-//        }
         
-        response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productDAO = new ProductDAO();
-        ArrayList<Product> listSP1 = productDAO.getProductsByTypeLimit(1);
-        ArrayList<Product> listSP2 = productDAO.getProductsByTypeLimit(2);
-        ArrayList<Product> listSP3 = productDAO.getProductsByTypeLimit(3);
-        ArrayList<Product> listSP4 = productDAO.getProductsByTypeLimit(4);
-        request.setAttribute("listSP1", listSP1);
-        request.setAttribute("listSP2", listSP2);
-        request.setAttribute("listSP3", listSP3);
-        request.setAttribute("listSP4", listSP4);
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-        requestDispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,7 +69,23 @@ public class GetFlowers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ProductDAO  productDAO = new ProductDAO();
+        BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
+        HttpSession session = request.getSession();
+        Basket basket = (Basket) session.getAttribute("basket");
+        if(basket != null){
+            int idProduct = Integer.parseInt(request.getParameter("id").toString());
+            Product product = productDAO.getProductById(idProduct);
+            BasketDetail basketDetail = new BasketDetail(product, 1);
+            ArrayList<BasketDetail> list = basket.getBasketDetail();
+            list.add(basketDetail);
+            basket.setBasketDetail(list);
+            basketDetailDAO.insertProductIntoBasket(basketDetail, basket);
+            session.setAttribute("basket", basket);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
+            requestDispatcher.forward(request, response);
+        }
+       
     }
 
     /**

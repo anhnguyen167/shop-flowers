@@ -17,7 +17,7 @@ public class Basket implements Serializable{
 	private int total;
 	
 	public Basket() {
-		
+		listBasketDetail = new ArrayList<>();
 	}
 	
 	public Basket(int id, User user, Date booking_date, ArrayList<BasketDetail> listBasketDetail, int total) {
