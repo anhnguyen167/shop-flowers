@@ -40,7 +40,7 @@
               </a>
             </li>
             <li id="checkout-icon">
-              <a href="#">
+              <a href="ViewBasketDetail">
                 <i class="fas fa-shopping-basket" aria-hidden="true">
                 </i>
                 
@@ -100,10 +100,9 @@
                                 <b> ${list.price} </b>
                             </a>
                             <form >
-                                                <button type="submit" 
-                                                        formmethod="POST" formaction="BasketDetail?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/thungrac.png" style="width: 30px; height: 30px">
-                                                </button>
+                                                <input type="submit" 
+                                                       formmethod="POST" formaction="ViewBasketDetail?id=${list.id}" value="Delete">
+                                                </input>
                                                
                                                 
                                             </form>

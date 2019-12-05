@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@page import="BEAN.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -54,9 +55,25 @@
         </div>
         <div id="right">
           <ul class="header-options">
-            <li id="headerSignIn" >
-              <a href="#">Sign In</a>
-            </li>
+                     <% String signIn = ""; %>
+                    <% if(session.getAttribute("user") == null){%>
+                    <% signIn = "Sign In"; }%>
+                    <li id="headerSignIn" >
+                        <a href="<%= request.getContextPath()%>/login"><%= signIn %></a>
+                    </li>
+                    <% String signOut = ""; %>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% signOut = "Sign Out"; }%>
+                    <li id="headerSignOut" >
+                        <a href="SignOut"><%= signOut %></a>
+                    </li>
+                    <% String name = ""; %>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% User user = (User)session.getAttribute("user"); %>
+                    <% name = user.getUsername(); }%>
+                    <li id="profile" >
+                        <a href="#"><%= name %></a>
+                    </li>
             <li id="contact-us">
               <a  href="#">
                 <i class="fas fa-phone" aria-hidden="true"></i>
@@ -64,10 +81,12 @@
               </a>
             </li>
             <li id="checkout-icon">
-              <a href="#">
+                <% int quantity = Integer.parseInt(request.getAttribute("quantity").toString()); %>
+                <%String checkout = "(" + quantity + ")"; %>
+              <a href="ViewBasketDetail">
                 <i class="fas fa-shopping-basket" aria-hidden="true">
                 </i>
-                <span>Checkout</span>
+                  <span><%= checkout %></span>
                 (0)
               </a>
             </li>
@@ -119,6 +138,9 @@
                             <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
                                 <b> ${list.price} </b>
                             </a>
+                            <form action="AddToBasket?id=${list.id}" method="post">
+                            <input type="submit" value="Add">
+                            </form>
                         </a>
                     </p>
                 </div>

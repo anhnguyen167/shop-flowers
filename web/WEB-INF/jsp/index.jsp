@@ -53,11 +53,17 @@
             </div>
             <div id="right">
                 <ul class="header-options">
+                    <% String signIn = ""; %>
+                    <% if(session.getAttribute("user") == null){%>
+                    <% signIn = "Sign In"; }%>
                     <li id="headerSignIn" >
-                        <a href="<%= request.getContextPath()%>/login">Sign In</a>
+                        <a href="<%= request.getContextPath()%>/login"><%= signIn %></a>
                     </li>
+                    <% String signOut = ""; %>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% signOut = "Sign Out"; }%>
                     <li id="headerSignOut" >
-                        <a href="SignOut">Sign Out</a>
+                        <a href="SignOut"><%= signOut %></a>
                     </li>
                     <% String name = ""; %>
                     <% if(session.getAttribute("user") != null){%>
@@ -73,6 +79,7 @@
                         </a>
                     </li>
                     <li id="checkout-icon">
+                        <a href="ViewBasketDetail">
                             <% String checkout = "(0)"; %>
                             <% if(session.getAttribute("quantity") != null){%>
                             <% int quantity = Integer.parseInt(session.getAttribute("quantity").toString()); %>
@@ -82,6 +89,7 @@
                             </i>
                             <span>Checkout</span>
                             <%=checkout%>
+                        </a>
                     </li>
 
                 </ul>
@@ -135,6 +143,9 @@
                             <br>
                             <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
+                        <form action="AddToBasket?id=${list.id}" method="post">
+                            <input type="submit" value="Add">
+                        </form>
                     </p>
                 </div>
             </div>	
@@ -159,6 +170,9 @@
                             <br>
                             <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
+                        <form action="AddToBasket?id=${list.id}" method="post">
+                            <input type="submit" value="Add">
+                        </form>
                     </p>
                 </div>
             </div>	
@@ -183,6 +197,9 @@
                             <br>
                             <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
+                        <form action="AddToBasket?id=${list.id}" method="post">
+                            <input type="submit" value="Add">
+                        </form>
                     </p>
                 </div>
             </div>	
@@ -207,6 +224,9 @@
                             <br>
                             <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
+                        <form action="AddToBasket?id=${list.id}" method="post">
+                            <input type="submit" value="Add">
+                        </form>
                     </p>
                 </div>
             </div>	
