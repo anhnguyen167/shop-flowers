@@ -81,13 +81,12 @@
               </a>
             </li>
             <li id="checkout-icon">
-                <% int quantity = Integer.parseInt(request.getAttribute("quantity").toString()); %>
-                <%String checkout = "(" + quantity + ")"; %>
+                <% String checkout = "(0)"; %>
               <a href="ViewBasketDetail">
                 <i class="fas fa-shopping-basket" aria-hidden="true">
                 </i>
-                  <span><%= checkout %></span>
-                (0)
+                  <span>Checkout</span>
+                  <%= checkout %>
               </a>
             </li>
             
