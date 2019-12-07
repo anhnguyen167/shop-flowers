@@ -84,8 +84,7 @@
                   <%= checkout %>
               </a>
             </li>
-            <br>
-            <a href="nAddProduct"> <b> Add Product</b> </a>
+            
           </ul>
           <div class="bar">
               <a href="BarLayout.html">
@@ -133,9 +132,6 @@
                             <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
                                 <b> ${list.price} </b>
                             </a>
-                            <form action="AddToBasket?id=${list.id}" method="post">
-                            <input type="submit" value="Add">
-                            </form>
                         </a>
                     </p>
                 </div>
@@ -161,8 +157,8 @@
                 $('#search-data').empty();
                 data.forEach(item => {
                     const ten = item.product_name;
-                  const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + '     Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
-                     $('#search-data').append(str);
+                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                    $('#search-data').append(str);
 
                 });
             })
