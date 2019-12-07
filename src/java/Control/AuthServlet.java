@@ -94,19 +94,16 @@ public class AuthServlet extends HttpServlet {
         if (user != null && user.getRole() == 1){
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            request.setAttribute("islogin", true);
-            Basket basket = initBasket(user);
-            session.setAttribute("basket", basket);
-            ArrayList<BEAN.BasketDetail> list = basket.getBasketDetail();
+            ArrayList<BEAN.BasketDetail> list = (ArrayList<BEAN.BasketDetail>) session.getAttribute("list");
             int quantity = 0;
             if(list != null) quantity = list.size();
+            session.setAttribute("list", list);
             session.setAttribute("quantity", quantity);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
             requestDispatcher.forward(request, response);
         } else if (user != null && user.getRole() == 0){
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            request.setAttribute("islogin", true);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/manager.jsp");
             requestDispatcher.forward(request, response);
         } else {
