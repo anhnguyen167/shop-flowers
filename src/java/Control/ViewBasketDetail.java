@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Basket;
+import BEAN.BasketDetail;
 import BEAN.Product;
 import DAO.BasketDetailDAO;
 import DAO.ProductDAO;
@@ -38,8 +39,7 @@ public class ViewBasketDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,28 +55,31 @@ public class ViewBasketDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Basket basket = (Basket) session.getAttribute("basket");
-        
-        if(basket != null){
-            ArrayList<BEAN.BasketDetail> list = basket.getBasketDetail();
-            if(list != null){
-                int sum = 0;
-                ArrayList<Product> p = new ArrayList<Product>();
-                for(int i=0; i<list.size(); i++){
-                    p.add(list.get(i).getProduct());
-                    sum += p.get(i).getPrice()*list.get(i).getQuantity();
-                }
-                request.setAttribute("listSPA", p);
-                request.setAttribute("total", sum);
-                request.setAttribute("quantity", p.size());
-            }else{
-                request.setAttribute("quantity", 0);
-            }
-            RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/basketDetail.jsp");
-            requestDispatcher.forward(request, response);
+        int sum = 0;
+        int total = 0;
+//        if(session.getAttribute("isLogin") != null){
+        ArrayList<BasketDetail> list = new ArrayList<>();
+        list = (ArrayList<BasketDetail>) session.getAttribute("list");
+        if (list == null) {
+            list = new ArrayList<>();
         }
+        int quantity = list.size();
         
+        for (BasketDetail i : list) {
+            total += i.getProduct().getPrice() * i.getQuantity();
        
+        }
+        sum = quantity;
+//        }
+        session.setAttribute("list", list);
+        session.setAttribute("quantity", list.size());
+        System.out.println(sum);
+        request.setAttribute("listSPA", list);
+        request.setAttribute("sum", sum);
+        request.setAttribute("total", total);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/basketDetail.jsp");
+        requestDispatcher.forward(request, response);
+
     }
 
     /**
@@ -90,37 +93,30 @@ public class ViewBasketDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO pDAO = new ProductDAO();
-        int id = Integer.parseInt(request.getParameter("id").toString());
-        Product pro = pDAO.getProductById(id);
+        int idProduct = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
-        Basket basket = (Basket) session.getAttribute("basket");
-        BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
-        if(basket != null){
-            int sum = 0;
-            ArrayList<BEAN.BasketDetail> list = basket.getBasketDetail();
-            if(list != null){
-                ArrayList<Product> p = new ArrayList<Product>();
-                for(int i=0; i<list.size(); i++){
-                    if(list.get(i).getProduct().getId() == pro.getId()){
-                        list.remove(i);
-                        basketDetailDAO.deleteBasketDetail(list.get(i));
-                    }else{
-                        p.add(list.get(i).getProduct());
-                        sum += p.get(i).getPrice()*list.get(i).getQuantity();
-                    }
-                }
-                
-                request.setAttribute("listSPA", p);
-                request.setAttribute("total", sum);
-                request.setAttribute("quantity", p.size());
-            }else{
-                request.setAttribute("quantity", 0);
+        ArrayList<BasketDetail> list = new ArrayList<>();
+        list = (ArrayList<BasketDetail>) session.getAttribute("list");
+        int sum = 0;
+        int total = 0;
+        for(BasketDetail i:list){
+            if(idProduct == i.getProduct().getId()){
+                list.remove(i);
+                break;
             }
-            RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/basketDetail.jsp");
-            requestDispatcher.forward(request, response);
         }
-        
+        sum = list.size();
+        for(BasketDetail i:list){
+           total += i.getQuantity()*i.getProduct().getPrice();
+        }
+        session.setAttribute("list", list);
+        session.setAttribute("quantity", list.size());
+        request.setAttribute("listSPA", list);
+        request.setAttribute("sum", sum);
+        request.setAttribute("total", total);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/basketDetail.jsp");
+        requestDispatcher.forward(request, response);
+
     }
 
     /**
