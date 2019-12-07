@@ -1,3 +1,165 @@
+.GioSP{
+	height: 250px;
+}
+.XemHoaDon{
+	height: 250px;
+}
+.CTHD-ThongTinKhachHang{
+	margin-left: 200px;
+}
+.GioSPCol1{
+	margin-left: 60px;
+	border: 1px solid #f1f1f1;
+	width: 9%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+    font-family: Palatino Linotype;
+	color: grey;
+}
+.XemHDCol1{
+	margin-left: 60px;
+	border: 1px solid #f1f1f1;
+	width: 9%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+    font-family: Palatino Linotype;
+	color: grey;
+}
+.GioSPCol2 img{
+	border: 1px solid #f1f1f1;
+	width: 17%;
+	height: 250px;
+	float: left;
+}
+.GioSPCol3{
+	border: 1px solid #f1f1f1;
+	width: 60%;
+	height: 100%;
+	float: left;
+}
+.XemHDCol2{
+	border: 1px solid #f1f1f1;
+	width: 80%;
+	height: 100%;
+	float: left;
+}
+.GioSPCol3Row1{
+	width: 100%;
+	height: 22%;
+	float: left;
+}
+.GioSPCol3Row1Col2{
+	width: 75%;
+	height: 100%;
+	float: left;
+	text-align: left;
+	margin-top: 35px;
+	font-size: 20px;
+	color: grey;
+}
+.GioSPCol3Row2{
+	width: 100%;
+	height: 22%;
+	float: left;
+}
+.GioSPCol3Row3{
+	width: 100%;
+	height: 22%;
+	float: left;
+}
+.GioSPCol3Row3Col1{
+	width: 15%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 35px;
+	font-size: 20px;
+	color: grey;
+}
+.GioSPCol3Row3Col2{
+	width: 75%;
+	height: 100%;
+	float: left;
+	margin-bottom: 40px;
+}
+.GioSPCol3Row4{
+	width: 100%;
+	height: 22%;
+	float: left;
+}
+.GioSPCol3Row5{
+	width: 100%;
+	height: 18%;
+	float: left;
+}
+.GioSPTongHoaDon{
+	width: 100%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	margin-top: 35px;
+	margin-left: 100px;
+	font-size: 20px;
+	color: grey;
+}
+.HDrow{
+	width: 100%;
+	height: 90px;
+	float: left;
+	text-align: left;
+	margin-top: 35px;
+	font-size: 20px;
+	color: grey;
+}
+.HDrow1{
+	width: 100%;
+	height: 15px;
+	float: left;
+	text-align: left;
+	margin-top: 35px;
+	font-size: 20px;
+	color: grey;
+}
+.HDrowDC{
+	width: 500px;
+	height: 50px;
+	float: left;
+	text-align: left;
+	color: grey;
+}
+.SP{
+	width: 100%;
+	float: left;
+	text-align: left;
+	margin-top: 35px;
+	font-size: 20px;
+	color: grey;
+}
+.SProw1{
+	width:100%;
+	height: 30px;
+	float: left;
+}
+.SProw2{
+	width:100%;
+	height: 60px;
+	float: left;
+	margin-left: 10px;
+	text-align: center;
+}
+.SProw2col{
+	margin-top:5px;
+	width: 20%;
+	min-height: 100%;
+	border: 1px solid grey;
+	float: left;
+}
 .Arow1{
     position: relative;
     margin-top: 40px;
@@ -298,6 +460,38 @@
 	color: white;
 	font-weight: bold;
 }
+.btnDatHang {
+	width: 200px;
+	box-sizing: border-box;
+	border: 0px solid black;
+	border-radius: 4px;
+	outline:none;
+	padding: 12px 14px;
+	float: right;
+	margin-right: 250px;
+	margin-bottom: 70px;
+	background-color:pink;
+	margin-top: 60px;
+	font-size: 18px;
+	font-family: "Times New Roman", Times, serif;
+	color: white;
+	font-weight: bold;
+}
+.btnThanhToan {
+	width: 300px;
+	box-sizing: border-box;
+	border: 0px solid black;
+	border-radius: 4px;
+	outline:none;
+	padding: 12px 14px;
+	float: right;
+	background-color:pink;
+	margin-top: 10px;
+	font-size: 18px;
+	font-family: "Times New Roman", Times, serif;
+	color: white;
+	font-weight: bold;
+}
 .btnTangSoLuong {
 	width: 30px;
 	height: 30px;
@@ -370,7 +564,7 @@ img{
 	text-align: right;
 	float: left;
 	width: 30%;
-	font-size: 16px;
+	font-size: 14px;
 }
 input[type="text"] {
       width: 200px;
@@ -383,6 +577,7 @@ input[type="text"] {
 }
 body{
 	margin: 5px;
+	font-family: "Times New Roman", Times, serif;
 }
 .clear{
 	clear: both;
@@ -458,4 +653,3 @@ a, a:hover{
 		display: inline;
 	}
 }
-

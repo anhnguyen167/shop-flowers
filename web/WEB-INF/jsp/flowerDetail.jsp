@@ -186,8 +186,9 @@
 	
 	<br>
 	<footer>
-		<image src="footer.png" style="width: 100% ;height :30%">
-	</footer>
+        <image src="Hoa/footer.png" style="width: 100% ;height :30%">
+    </footer>
+
     </body>
     <script>
     $(function () {

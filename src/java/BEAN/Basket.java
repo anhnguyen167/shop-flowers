@@ -15,26 +15,30 @@ public class Basket implements Serializable{
 	private ArrayList<BasketDetail> listBasketDetail;
 	private Date booking_date;
 	private int total;
+        private String address;
+        private int state;
 	
 	public Basket() {
 		listBasketDetail = new ArrayList<>();
 	}
 	
-	public Basket(int id, User user, Date booking_date, ArrayList<BasketDetail> listBasketDetail, int total) {
+	public Basket(int id, User user, Date booking_date, ArrayList<BasketDetail> listBasketDetail, int total, String address) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.listBasketDetail = listBasketDetail;
 		this.total = total;
 		this.booking_date = booking_date;
+                this.address= address;
 	}
 	
-	public Basket(User user,Date booking_date,  ArrayList<BasketDetail> listBasketDetail, int total) {
+	public Basket(User user,Date booking_date,  ArrayList<BasketDetail> listBasketDetail, int total, String address) {
 		super();
 		this.user = user;
 		this.listBasketDetail = listBasketDetail;
 		this.total = total;
 		this.booking_date = booking_date;
+                this.address= address;
 	}
 
 	public int getId() {
@@ -76,6 +80,30 @@ public class Basket implements Serializable{
 	public void setBooking_date(Date booking_date) {
 		this.booking_date = booking_date;
 	}
-	
+
+    public ArrayList<BasketDetail> getListBasketDetail() {
+        return listBasketDetail;
+    }
+
+    public void setListBasketDetail(ArrayList<BasketDetail> listBasketDetail) {
+        this.listBasketDetail = listBasketDetail;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
 	
 }

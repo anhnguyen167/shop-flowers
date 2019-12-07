@@ -66,7 +66,8 @@
                 (0)
               </a>
             </li>
-            
+            <br>
+            <a href="nAddProduct"> <b> Add Product</b> </a>
           </ul>
           <div class="bar">
               <a href="BarLayout.html">

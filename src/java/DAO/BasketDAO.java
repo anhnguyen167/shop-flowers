@@ -80,7 +80,7 @@ public class BasketDAO extends DAOConnector{
 				int id = rs.getInt(1);
 
                                 ArrayList<BasketDetail> listBasketDetail = basketDetailDAO.getBasketDetailByBasketId(id);
-				basket = new Basket(id, user, rs.getDate(3), listBasketDetail, rs.getInt(4));
+				//basket = new Basket(id, user, rs.getDate(3), listBasketDetail, rs.getInt(4));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -88,6 +88,37 @@ public class BasketDAO extends DAOConnector{
 		}
 		
 		return basket;
+	}
+        public static ArrayList<Basket> getAllBasket(){
+            Connection con= connectDB.connectDB();
+		ArrayList<Basket> listBasket= new ArrayList<Basket>();
+		String sql = "SELECT * FROM `baskets` WHERE state=1";
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				int user_id = rs.getInt(2);
+				Date booking_date = rs.getDate(3);
+				int total = rs.getInt(4);
+				String address= rs.getString(5);
+				int state = rs.getInt(6);
+                                UserDAO userDAO= new UserDAO();
+                                User user = userDAO.getUserById(user_id);
+                                BasketDetailDAO basketDetailDAO= new BasketDetailDAO();
+                                ArrayList<BasketDetail> listBasketDetails= basketDetailDAO.getBasketDetailByBasketId(id);
+                                Basket basket = new Basket(user, booking_date, listBasketDetails, total, address);
+                                listBasket.add(basket);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listBasket;
+        
 	}
         public static void main(String[] args) {
         UserDAO daoU = new UserDAO();
