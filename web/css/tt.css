@@ -1,4 +1,3 @@
-
 .Arow1{
     position: relative;
     margin-top: 40px;
@@ -6,6 +5,77 @@
     float: left;
     width: 40%;
     height: 700px;
+}
+.Arow1-row1{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 10%;
+	font-size: 38px;
+	font-weight: bold;
+    font-family: Palatino Linotype;
+	color: grey;
+	background-color: #f1f1f1;
+	border: 1px solid #f1f1f1;
+}
+.Arow1-row1-col1{
+	margin-top: 10px;
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 100%;
+	margin-left: 20px;
+	font-size: 38px;
+	font-weight: bold;
+}
+.Arow1-row1-col2{
+	margin-top: 10px;
+    position: relative;
+    float: right;
+    width: 12%;
+    height: 100%;
+	font-size: 38px;
+	font-weight: bold;
+	color: pink;
+}
+.Arow1-row2{
+	border: 1px solid #f1f1f1;
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 40%;
+    margin-top: 10px;
+	font-size: 18px;
+	font-weight: bold;
+    font-family: Palatino Linotype;
+	color: grey;
+}
+.Arow1-row2-cel{
+    margin-left: 25px;
+}
+.Arow1-row3{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 20%;
+}
+.Arow1-row3-col1{
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.Arow1-row3-col1-row1{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 10%;
+}
+.Arow1-row3-col2{
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 100%;
 }
 .addFlower{
     position: relative;
@@ -28,13 +98,15 @@
 .anhhoa1 img{
     width: 93%;
     height: 335px;
-    margin-left: 35px;
+    margin-top: 13px;
+    margin-left: 13px;
     margin-bottom: 80px;
 }
 .anhhoa2 img{
     width: 325px;
     height: 250px;
-    margin-left: 35px;
+    margin-top: 13px;
+    margin-left: 13px;
     margin-bottom: 100px;
 }
 .rowh{
@@ -63,20 +135,35 @@
     width: 24%;
     height: 500px;
 }
+.row1bf{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 10px;
+    float: left;
+    width: 1%;
+}
+.row1:hover{
+    background: pink;
+	text-decoration:none;
+}
 .row3{
     position: relative;
     margin-top: 40px;
+    margin-left: 10px;
     float: left;
     width: 24%;
     height: 500px;
 }
-
 .row2{
     position: relative;
     margin-top: 40px;
     float: left;
     width: 24%;
     height: 415px;
+}
+.row2:hover{
+    background: pink;
+	text-decoration:none;
 }
 .anhhoa1asu{
 	height: 165px;
@@ -85,7 +172,7 @@
     font-size: 30px;
     position: absolute;
     bottom: 0px;
-    margin-left: 50px;
+    margin-left: 20px;
 	text-decoration: none;
 }
 .deleteFlower{
@@ -101,20 +188,27 @@
 	height: 33%;
 }
 .flowerEdit{
-	width: 40%;
+	width: 30%;
+	margin-top: 5px;
+	margin-left: 1px;
 	float: left;
 }
 .flowerDelete{
 	width: 30%;
-	height: 24px;
-	margin-top: 7px;
-	margin-left: 3px;
+	margin-top: 5px;
+	margin-left: 20px;
+	float: left;
+}
+.flowerS{
+	margin-top: 5px;
+	margin-left: 35px;
+	width: 5%;
+	font-family: "Times New Roman", Times, serif;
 	float: left;
 }
 #menu{
-margin-bottom: 15px;
-margin-top: 15px;
-
+	margin-bottom: 15px;
+	margin-top: 15px;
 }
 #menu ul{
     list-style-type: none;
@@ -124,7 +218,7 @@ margin-top: 15px;
 #menu ul li{
     color: #f1f1f1;
     display: inline-table;
-    width:  200px;
+    width:  260px;
     height: 60px;
     line-height: 60px;
     position: relative;
@@ -179,23 +273,77 @@ margin-top: 15px;
 
 }
 .btnEdit {
-      width: 100px;
-      box-sizing: border-box;
-      border: 1px solid black;
-      border-radius: 4px;
-      outline:none;
-      padding: 12px 14px;
-      transition: 0.6s ease-in-out;
-	  float: right;
+	width: 100px;
+	box-sizing: border-box;
+	border: 1px solid black;
+	border-radius: 4px;
+	outline:none;
+	padding: 12px 14px;
+	transition: 0.6s ease-in-out;
+	float: right;
+}
+.btnThemVaoGioHang {
+	width: 200px;
+	box-sizing: border-box;
+	border: 0px solid black;
+	border-radius: 4px;
+	outline:none;
+	padding: 12px 14px;
+	float: right;
+	margin-right: 30px;
+	background-color:pink;
+	margin-top: 30px;
+	font-size: 18px;
+	font-family: "Times New Roman", Times, serif;
+	color: white;
+	font-weight: bold;
+}
+.btnTangSoLuong {
+	width: 30px;
+	height: 30px;
+	box-sizing: border-box;
+	border: 1px solid grey;
+	border-radius: 4px;
+	outline:none;
+	float: left;
+	background-color: #f1f1f1;
+	margin-top: 30px;
+	font-size: 18px;
+	font-family: "Times New Roman", Times, serif;
+	color: black;
+	font-weight: bold;
+}
+.btnGiamSoLuong {
+	margin-left: 240px;
+	width: 30px;
+	height: 30px;
+	box-sizing: border-box;
+	border: 1px solid grey;
+	border-radius: 4px;
+	outline:none;
+	float: left;
+	background-color: #f1f1f1;
+	margin-top: 30px;
+	font-size: 18px;
+	font-family: "Times New Roman", Times, serif;
+	color: black;
+	font-weight: bold;
+}
+.soluong{
+	margin-top: 30px;
+	font-size: 8px;
+	font-family: "Times New Roman", Times, serif;
+	float: left;
+	
 }
 .btnAdd {
-      width: 100px;
-      box-sizing: border-box;
-      border: 1px solid black;
-      border-radius: 4px;
-      outline:none;
-      padding: 5px 5px;
-	  float: right;
+	width: 100px;
+	box-sizing: border-box;
+	border: 1px solid black;
+	border-radius: 4px;
+	outline:none;
+	padding: 5px 5px;
+	float: right;
 }
 #header{
 	text-rendering: auto;
@@ -272,7 +420,7 @@ body{
 	float: left;
 }
 #headerSignIn{
-	width: 33%;
+	width: 33%
 	float: right;
 }
 #contact-us{

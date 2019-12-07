@@ -111,10 +111,38 @@
 		</div>
 	</div>	
 	<div class="Arow1">
-		<<h1 id="text">${Product.description}</h1>
+		<div class="Arow1-row1">
+			<div class="Arow1-row1-col1">${Product.product_name}</div>
+			<div class="Arow1-row1-col2">${Product.price}</div>
+		</div>
+		<div class="Arow1-row2">
+			<div class="Arow1-row2-cel">
+			<br>
+			<a style="color:pink;font-style: italic;">Thông Tin Sản Phẩm: </a>
+			<br>
+			${Product.description}
+			<br> <br>
+			<a style="color:pink;font-style: italic;">Trạng thái:</a>
+			<br> 
+			<a style="color:red"> ${Product.state} </a>
+			</div>
+		</div>
+		<div class="Arow1-row3">
+			<div class="Arow1-row3-col1"> 
+				<div class="Arow1-row3-col1-row1">
+					<br> Số Lượng:
+				</div>
+				<div>
+					<button type="submit" formaction="GiamSoLuong" class="btnGiamSoLuong"> - </button> 
+					<a class="soluong"> <input type="text" name="ten" style="text-align:center; width:100px;height:30px;" value="1"> </a>
+					<button type="submit" formaction="TangSoLuong" class="btnTangSoLuong"> + </button> 
+				</div>
+			</div>
+			<div class="Arow1-row3-col2"> 
+				<button type="submit" formaction="ThemVaoGioHang" class="btnThemVaoGioHang">Thêm Vào Giỏ Hàng</button> 
+			</div>
+		</div>
 	</div>
-	
-	
 	<div style="clear: both;"></div>
 	<hr>
 	<h1 style="text-align: center;"> 

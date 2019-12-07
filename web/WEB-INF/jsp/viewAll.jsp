@@ -125,13 +125,13 @@
        <c:forEach items="${listSPA}" var="list">
             <div class="row1">
                 <div class="anhhoa1">
-                    <a>
+                    <a href="FlowersDetail?id=${list.id}">
                         <img src="<%= request.getContextPath()%>/${list.image}">
                     </a>
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a href="FlowersDetail?id=${list.id}" style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b>
                             <br>
                             <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 

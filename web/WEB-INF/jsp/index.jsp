@@ -131,24 +131,21 @@
         </h1>
         <c:forEach items="${listSP1}" var="list">
             <div class="row1">
-                <div class="anhhoa1">
-                    <a href="FlowersDetail?id=${list.id}">
-                        <img src="<%= request.getContextPath()%>/${list.image} ">
-                    </a>
-                </div>
-                <div class="anhhoa1asu"> 
-                    <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-                            <b> ${list.product_name} </b>
-                            <br>
-                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
-                        </a>
-                        <form action="AddToBasket?id=${list.id}" method="post">
-                            <input type="submit" value="Add">
-                        </form>
-                    </p>
-                </div>
-            </div>	
+		<div class="anhhoa1">
+			<a href="FlowersDetail?id=${list.id}">
+				<img src="<%= request.getContextPath()%>/${list.image}">
+			</a>
+		</div>
+		<div class="anhhoa1asu"> 
+			<p>
+				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+					<b> ${list.product_name} </b>
+					<br>
+						<a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b>${list.price} </b> </a>
+				</a>
+			</p>
+		</div>
+	</div>	
         </c:forEach>
         <div style="clear: both;"></div>
         <hr>
@@ -170,9 +167,6 @@
                             <br>
                             <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
-                        <form action="AddToBasket?id=${list.id}" method="post">
-                            <input type="submit" value="Add">
-                        </form>
                     </p>
                 </div>
             </div>	
@@ -197,9 +191,6 @@
                             <br>
                             <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
-                        <form action="AddToBasket?id=${list.id}" method="post">
-                            <input type="submit" value="Add">
-                        </form>
                     </p>
                 </div>
             </div>	
@@ -224,9 +215,6 @@
                             <br>
                             <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
                         </a>
-                        <form action="AddToBasket?id=${list.id}" method="post">
-                            <input type="submit" value="Add">
-                        </form>
                     </p>
                 </div>
             </div>	

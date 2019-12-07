@@ -78,7 +78,7 @@ public class SignUp extends HttpServlet {
             throws ServletException, IOException {
        
         String regrex_mail = "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$";
-        String regrex_phone = "(09|01[2|6|8|9])+([0-9]{8})";
+        String regrex_phone = "(09|01[2|6|8|9]|03)+([0-9]{8})";
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String retypedPass = request.getParameter("password2");
