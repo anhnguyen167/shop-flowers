@@ -119,7 +119,7 @@
 			<br> <br>
 			<a style="color:pink;font-style: italic;">Trạng thái:</a>
 			<br> 
-			<a style="color:red"> ${Product.state} </a>
+			<a style="color:red"> ${Product.state==1 ? "còn" :"hết "} </a>
 			</div>
 		</div>
 		<div class="Arow1-row3">
@@ -203,8 +203,8 @@
                 $('#search-data').empty();
                 data.forEach(item => {
                     const ten = item.product_name;
-                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
-                    $('#search-data').append(str);
+                      const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + '     Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
+                  $('#search-data').append(str);
 
                 });
             })
