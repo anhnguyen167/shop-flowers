@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Basket;
+import BEAN.BasketDetail;
 import DAO.BasketDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,6 +47,8 @@ public class nViewOrderDetail extends HttpServlet {
                 basket= list.get(i);
             }
         }
+//        List<BasketDetail> listBasketDetails= basket.getListBasketDetail();
+//        request.setAttribute("listBasketDetails", listBasketDetails);
         request.setAttribute("basket", basket);
         RequestDispatcher rq= request.getRequestDispatcher(url);
         rq.forward(request, response);

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
    <head>
@@ -105,26 +106,26 @@
 		<div class="CTHD-ThongTinKhachHang">
 			<div class="HDrow1">
 				<a style="color:pink;"> Tên Khách Hàng: </a>
-				Nguyễn Thị Thanh Tâm
+				${basket.user.full_name}
 			</div>
 			<div class="HDrow1">
 				<a style="color:pink;"> Ngày Đặt: </a>
-				07/12/2019
+				${basket.booking_date}
 			</div>
 			<div class="HDrow">
 				<a style="color:pink;"> Địa Chỉ: </a>
-				Học viện Công nghệ Bưu chính Viễn thông
+				${basket.address}
 			</div>
 		</div>
 	</div>
-    <c:forEach items="${list}" var="list">
+    <c:forEach items="${basket.listBasketDetail}" var="list">
 	<div class="GioSP">
 		<div class="GioSPCol1">
 			<div style="margin-top: 90px;"> 1 </div>
 		</div>
 		<div class="GioSPCol2">
 			<a href="A2.html">
-				<img src="<%= request.getContextPath()%>/${list.image}">
+				<img src="<%= request.getContextPath()%>/${list.product.image}">
 			</a>
 		</div>
 		<div class="GioSPCol3">
@@ -133,7 +134,7 @@
 					Tên:
 				</div>
 				<div class="GioSPCol3Row1Col2">
-					<b> ${list.image} </b>
+					<b> ${list.product.product_name} </b>
 				</div>
 			</div>
 			<div class="GioSPCol3Row2">
@@ -141,7 +142,7 @@
 					Giá:
 				</div>
 				<div class="GioSPCol3Row1Col2">
-					39$
+					${list.product.price}
 				</div>
 			</div>
 			<div class="GioSPCol3Row3">
@@ -149,7 +150,7 @@
 					Số Lượng:
 				</div>
 				<div class="GioSPCol3Row1Col2">
-					2
+					${list.quantity}
 				</div>
 			</div>
 		</div>
@@ -160,15 +161,7 @@
 			<b>
 			<div class="GioSPTongHoaDon" style="font-size: 24px;">
 				Tổng Hóa Đơn:
-				117$
-			</div>
-			</b>
-		</div>
-		<div>
-			<b>
-			<div class="GioSPTongHoaDon" style="font-size: 24px;">
-				Tổng Sản Phẩm:
-				3
+				${basket.total}
 			</div>
 			</b>
 		</div>
