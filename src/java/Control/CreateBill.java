@@ -107,7 +107,7 @@ public class CreateBill extends HttpServlet {
             BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
             
             // Lưu hóa đơn vào csdl
-            Basket basket = new Basket(user, date, list, total, diaChi);
+            Basket basket = new Basket(user, date, list, total, state, diaChi);
             basketDAO.insertBasket(basket);
             int last_id = basketDAO.getLastId();
             basket = basketDAO.getLastBasket(last_id);

@@ -83,7 +83,7 @@ public class BasketDAO extends DAOConnector {
                 User user = userDAO.getUserById(user_id);
                 BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
                 ArrayList<BasketDetail> listBasketDetails = basketDetailDAO.getBasketDetailByBasketId(id);
-                basket = new Basket(id, user, booking_date, listBasketDetails, total, address);
+                basket = new Basket(id, user, booking_date, listBasketDetails, total,state, address);
             }
         } catch (SQLException ex) {
             Logger.getLogger(BasketDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -175,7 +175,7 @@ public class BasketDAO extends DAOConnector {
                 User user = userDAO.getUserById(user_id);
                 BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
                 ArrayList<BasketDetail> listBasketDetails = basketDetailDAO.getBasketDetailByBasketId(id);
-                Basket basket = new Basket(user, booking_date, listBasketDetails, total, address);
+                Basket basket = new Basket(user, booking_date, listBasketDetails, total,state, address);
                 listBasket.add(basket);
             }
 

@@ -46,7 +46,7 @@
           </form>
         </div>
         <div id="middle">
-          <a href="QLHome.html"> <img src="Hoa/logo.png"> </a>
+          <a href="nManager"> <img src="Hoa/logo.png"> </a>
         </div>
         <div id="right">
           <ul class="header-options">
@@ -64,7 +64,7 @@
               </a>
             </li>
             <li id="headerSignOut">
-              <a href="HOME.html">
+              <a href="SignOut">
                 <span>Sign Out</span>
               </a>
             </li>
@@ -283,11 +283,11 @@
                    $('#search-data').append(str);
 
                  });
-             })
+             });
          });
          $('body').click(function () {
              $('.search-data').removeClass('show');
-         })
-     })
+         });
+     });
     </script>
 </html>

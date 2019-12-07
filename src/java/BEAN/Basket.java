@@ -22,7 +22,7 @@ public class Basket implements Serializable{
 		listBasketDetail = new ArrayList<>();
 	}
 	
-	public Basket(int id, User user, Date booking_date, ArrayList<BasketDetail> listBasketDetail, int total, String address) {
+	public Basket(int id, User user, Date booking_date, ArrayList<BasketDetail> listBasketDetail, int total, int state, String address) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -30,15 +30,17 @@ public class Basket implements Serializable{
 		this.total = total;
 		this.booking_date = booking_date;
                 this.address= address;
+                this.state = state;
 	}
 	
-	public Basket(User user,Date booking_date,  ArrayList<BasketDetail> listBasketDetail, int total, String address) {
+	public Basket(User user,Date booking_date,  ArrayList<BasketDetail> listBasketDetail, int total, int state, String address) {
 		super();
 		this.user = user;
 		this.listBasketDetail = listBasketDetail;
 		this.total = total;
 		this.booking_date = booking_date;
                 this.address= address;
+                this.state = state;
 	}
 
 	public int getId() {

@@ -152,7 +152,7 @@ public class UserDAO extends DAOConnector{
       
 	public static void main(String[] args) {
 		UserDAO dao = new UserDAO();
-		User user = new User("admin", "12345", "Nguyen Thi Minh Phuong", "Ha Noi", "phuong@gmail.com", "0389615656", 0);
+		User user = new User("anh", "123", "Nguyen Thi Anh", "Ha Noi", "anh@gmail.com", "0348599990", 0);
 		if(dao.insertUser(user) == true) {
 			System.out.println("OK");
 		}

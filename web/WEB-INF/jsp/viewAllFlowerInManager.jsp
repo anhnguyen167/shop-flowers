@@ -40,34 +40,35 @@
     </head>
     <body>
         <div id="header">
-            <div id="left">
-                <div class="form-inline" id="search-form">
-                    <input autocomplete="false" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
-                    <div class="search-data">
-                        <ul class="list-group" id="search-data">
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div id="left">
+          <form class="search-form">
+            <input type="text" name="search" placeholder="Search..">
+          </form>
+        </div>
         <div id="middle">
           <a href="nManager"> <img src="Hoa/logo.png"> </a>
         </div>
         <div id="right">
           <ul class="header-options">
-            <li id="headerSignIn" >
-              <a href="#">Sign In</a>
+            <li id="headerName">
+              <a>Quản Lý</a>
             </li>
-            
-            <li id="checkout-icon">
-              <a href="#">
-                <i class="fas fa-shopping-basket" aria-hidden="true">
-                </i>
-                <span>Checkout</span>
-                (0)
+            <li id="headerViewOrder">
+              <a  href="ViewOrder">
+                <span>View Order</span>
               </a>
             </li>
-            <br>
-            <a href="nAddProduct"> <b> Add Product</b> </a>
+            <li id="headerAddFlowers">
+              <a href="nAddProduct">
+                <span>Add Flowers</span>
+              </a>
+            </li>
+            <li id="headerSignOut">
+              <a href="SignOut">
+                <span>Sign Out</span>
+              </a>
+            </li>
+            
           </ul>
           <div class="bar">
               <a href="BarLayout.html">
@@ -96,7 +97,7 @@
                         <li><a href="ViewAllFlowerInManager?type=2"> <b> Bouquets </b> </a></li>
                         <li><a href="ViewAllFlowerInManager?type=4"> <b> Flowers Shelf </b> </a></li>
 		</ul>
-	</div>	
+	</div>
         
         <div style="clear: both;"></div>
         

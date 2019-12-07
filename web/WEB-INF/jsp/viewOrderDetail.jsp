@@ -45,7 +45,7 @@
                 </form>
             </div>
             <div id="middle">
-                <a href="QLHome.html"> <img src="Hoa/logo.png"> </a>
+                <a href="nManager"> <img src="Hoa/logo.png"> </a>
             </div>
             <div id="right">
                 <ul class="header-options">

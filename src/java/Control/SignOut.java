@@ -34,7 +34,7 @@ public class SignOut extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session != null){
+        if(session.getAttribute("user") != null){
             session.removeAttribute("list");
             session.removeAttribute("quantity");
             session.removeAttribute("user");
