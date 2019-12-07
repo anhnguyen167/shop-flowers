@@ -16,7 +16,7 @@
         <title>Flowers Delivery | Bunches</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <link href="<%= request.getContextPath()%>/css/tt.css" rel="stylesheet" type="text/css"/>
+        <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
     </head>
     </head>
     <body>

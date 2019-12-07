@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <link href="<%=request.getContextPath()%>/css/tt.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
                 font-family: 'Roboto', sans-serif;
@@ -55,12 +55,7 @@
             <li id="headerSignIn" >
               <a href="#">Sign In</a>
             </li>
-            <li id="contact-us">
-              <a  href="#">
-                <i class="fas fa-phone" aria-hidden="true"></i>
-                <span>03896 15656</span>
-              </a>
-            </li>
+            
             <li id="checkout-icon">
               <a href="#">
                 <i class="fas fa-shopping-basket" aria-hidden="true">

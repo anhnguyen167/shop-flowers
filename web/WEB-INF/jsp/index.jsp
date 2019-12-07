@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <link href="<%= request.getContextPath()%>/css/tt.css" rel="stylesheet" type="text/css"/>
+        <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <style>
             body{
@@ -41,7 +41,7 @@
         <div id="header">
             <div id="left">
                 <div class="form-inline" id="search-form">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
                     <div class="search-data">
                         <ul class="list-group" id="search-data">
                         </ul>
@@ -71,12 +71,6 @@
                     <% name = user.getUsername(); }%>
                     <li id="profile" >
                         <a href="#"><%= name %></a>
-                    </li>
-                    <li id="contact-us">
-                        <a  href="#">
-                            <i class="fas fa-phone" aria-hidden="true"></i>
-                            <span>03896 15656</span>
-                        </a>
                     </li>
                     <li id="checkout-icon">
                         <a href="ViewBasketDetail">

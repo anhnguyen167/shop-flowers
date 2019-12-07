@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <link href="<%= request.getContextPath()%>/css/tt.css" rel="stylesheet" type="text/css"/>
+        <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
                 font-family: 'Roboto', sans-serif;
@@ -42,7 +42,7 @@
         <div id="header">
             <div id="left">
                 <div class="form-inline" id="search-form">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <input autocomplete="false" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
                     <div class="search-data">
                         <ul class="list-group" id="search-data">
                         </ul>
@@ -57,12 +57,7 @@
             <li id="headerSignIn" >
               <a href="#">Sign In</a>
             </li>
-            <li id="contact-us">
-              <a  href="#">
-                <i class="fas fa-phone" aria-hidden="true"></i>
-                <span>03896 15656</span>
-              </a>
-            </li>
+            
             <li id="checkout-icon">
               <a href="#">
                 <i class="fas fa-shopping-basket" aria-hidden="true">
@@ -104,10 +99,10 @@
         
         <div style="clear: both;"></div>
         
-       <c:forEach items="${listSPA}" var="list">
-            <div class="row1">
+        <c:forEach items="${listSPA}" var="list">
+            <div class="row3">
                 <div class="anhhoa1">
-                    <a>
+                    <a href="FlowersDetail?id=${list.id}">
                         <img src="<%= request.getContextPath()%>/${list.image}">
                     </a>
                 </div>
@@ -121,14 +116,17 @@
                             </a>
                             <br>
                             <form >
-                                <button type="submit" 
-                                        formmethod="POST" formaction="DeleteProducts?id=${list.id}">
-                                    <img src="<%= request.getContextPath()%>/Hoa/thungrac.png" style="width: 30px; height: 30px">
-                                </button>
-                                <a style="color: black; font-size:30px">| </a>
-                                <button type="submit" formmethod="POST" formaction="nEditProducts?id=${list.id}">
-                                    <img src="<%= request.getContextPath()%>/Hoa/edit.png" style="width: 30px; height: 30px">
-                                </button>
+                                <form >
+					<div class="flowerEdit">
+						<button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
+					</div>
+					<div class="flowerS">
+						<a style="color: black; font-size:22px"> | </a>
+					</div>
+					<div class="flowerDelete">
+						<button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
+					</div>
+                                        </form>
                             </form>
                         </a>
                             
@@ -136,12 +134,8 @@
                 </div>
             </div>	
         </c:forEach>
-        <div style="clear: both;"></div>
-        <br>
-        <footer>
-		<image src="Hoa/footer.png" style="width: 100% ;height :30%">
-	</footer>
-    </body>
+        
+       
     <script>
     $(function () {
         // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED

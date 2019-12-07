@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <link href="<%= request.getContextPath()%>/css/tt.css" rel="stylesheet" type="text/css"/>
+        <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
                 font-family: 'Roboto', sans-serif;
@@ -58,12 +58,7 @@
             <li id="headerSignIn" >
               <a href="#">Sign In</a>
             </li>
-            <li id="contact-us">
-              <a  href="#">
-                <i class="fas fa-phone" aria-hidden="true"></i>
-                <span>03896 15656</span>
-              </a>
-            </li>
+            
             <li id="checkout-icon">
               <a href="#">
                 <i class="fas fa-shopping-basket" aria-hidden="true">
@@ -112,34 +107,41 @@
 		Basket
 		<a href="ViewAllFlowerInManager?type=1" style="color: black; font-size:17px "> View All </a>
 	</h1>
+        
         <c:forEach items="${listSP1}" var="list">
-	<div class="row1">
-		<div class="anhhoa1">
-			<a href="FlowersDetail?id=${list.id}">
-				<img src="<%= request.getContextPath()%>/${list.image} ">
-			</a>
-		</div>
-		<div class="anhhoa1asu"> 
-			<p>
-				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-					<b> ${list.product_name} </b>
-					<br>
-                                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
-                                        <br>
-                                            <form >
-                                                <button type="submit" 
-                                                        formmethod="POST" formaction="DeleteProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/thungrac.png" style="width: 30px; height: 30px">
-                                                </button>
-                                                <a style="color: black; font-size:30px">| </a>
-                                                <button type="submit" formmethod="POST" formaction="nEditProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/edit.png" style="width: 30px; height: 30px">
-                                                </button>
-                                            </form>
-				</a>
-			</p>
-		</div>
-	</div>	
+            <div class="row3">
+                <div class="anhhoa1">
+                    <a href="FlowersDetail?id=${list.id}">
+                        <img src="<%= request.getContextPath()%>/${list.image}">
+                    </a>
+                </div>
+                <div class="anhhoa1asu"> 
+                    <p>
+                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                            <b> ${list.product_name} </b>
+                            <br>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
+                                <b> ${list.price} </b>
+                            </a>
+                            <br>
+                            <form >
+                                <form >
+					<div class="flowerEdit">
+						<button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
+					</div>
+					<div class="flowerS">
+						<a style="color: black; font-size:22px"> | </a>
+					</div>
+					<div class="flowerDelete">
+						<button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
+					</div>
+                                        </form>
+                            </form>
+                        </a>
+                            
+                    </p>
+                </div>
+            </div>	
         </c:forEach>
         <div style="clear: both;"></div>
         
@@ -149,33 +151,39 @@
 		<a href="ViewAllFlowerInManager?type=2" style="color: black; font-size:17px "> View All </a>
 	</h1>
         <c:forEach items="${listSP2}" var="list">
-	<div class="row1">
-		<div class="anhhoa1">
-			<a href="FlowersDetail?id=${list.id}">
-				<img src="<%= request.getContextPath()%>/${list.image} ">
-			</a>
-		</div>
-		<div class="anhhoa1asu"> 
-			<p>
-				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-					<b> ${list.product_name} </b>
-					<br>
-                                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
-                                        <br>
-                                            <form >
-                                                <button type="submit" 
-                                                        formmethod="POST" formaction="DeleteProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/thungrac.png" style="width: 30px; height: 30px">
-                                                </button>
-                                                <a style="color: black; font-size:30px">| </a>
-                                                <button type="submit" formmethod="POST" formaction="nEditProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/edit.png" style="width: 30px; height: 30px">
-                                                </button>
-                                            </form>
-				</a>
-			</p>
-		</div>
-	</div>	
+            <div class="row3">
+                <div class="anhhoa1">
+                    <a href="FlowersDetail?id=${list.id}">
+                        <img src="<%= request.getContextPath()%>/${list.image}">
+                    </a>
+                </div>
+                <div class="anhhoa1asu"> 
+                    <p>
+                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                            <b> ${list.product_name} </b>
+                            <br>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
+                                <b> ${list.price} </b>
+                            </a>
+                            <br>
+                            <form >
+                                <form >
+					<div class="flowerEdit">
+						<button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
+					</div>
+					<div class="flowerS">
+						<a style="color: black; font-size:22px"> | </a>
+					</div>
+					<div class="flowerDelete">
+						<button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
+					</div>
+                                        </form>
+                            </form>
+                        </a>
+                            
+                    </p>
+                </div>
+            </div>	
         </c:forEach>
         <div style="clear: both;"></div>
         
@@ -184,36 +192,41 @@
 		Box
 		<a href="ViewAllFlowerInManager?type=3" style="color: black; font-size:17px "> View All </a>
 	</h1>
-        <c:forEach items="${listSP3}" var="list">
-	<div class="row1">
-		<div class="anhhoa1">
-			<a href="FlowersDetail?id=${list.id}">
-				<img src="<%= request.getContextPath()%>/${list.image} ">
-			</a>
-		</div>
-		<div class="anhhoa1asu"> 
-			<p>
-				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-					<b> ${list.product_name} </b>
-					<br>
-                                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
-                                        <br>
-                                            <form >
-                                                <button type="submit" 
-                                                        formmethod="POST" formaction="DeleteProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/thungrac.png" style="width: 30px; height: 30px">
-                                                </button>
-                                                <a style="color: black; font-size:30px">| </a>
-                                                <button type="submit" formmethod="POST" formaction="nEditProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/edit.png" style="width: 30px; height: 30px">
-                                                </button>
-                                            </form>
-				</a>
-			</p>
-		</div>
-	</div>	
-        </c:forEach>
-        <div style="clear: both;"></div>
+       <c:forEach items="${listSP3}" var="list">
+            <div class="row3">
+                <div class="anhhoa1">
+                    <a href="FlowersDetail?id=${list.id}">
+                        <img src="<%= request.getContextPath()%>/${list.image}">
+                    </a>
+                </div>
+                <div class="anhhoa1asu"> 
+                    <p>
+                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                            <b> ${list.product_name} </b>
+                            <br>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
+                                <b> ${list.price} </b>
+                            </a>
+                            <br>
+                            <form >
+                                <form >
+					<div class="flowerEdit">
+						<button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
+					</div>
+					<div class="flowerS">
+						<a style="color: black; font-size:22px"> | </a>
+					</div>
+					<div class="flowerDelete">
+						<button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
+					</div>
+                                        </form>
+                            </form>
+                        </a>
+                            
+                    </p>
+                </div>
+            </div>	
+        </c:forEach>        <div style="clear: both;"></div>
         
         <hr>
 	<h1 style="text-align: center;"> 
@@ -221,33 +234,39 @@
 		<a href="ViewAllFlowerInManager?type=4" style="color: black; font-size:17px "> View All </a>
 	</h1>
         <c:forEach items="${listSP4}" var="list">
-	<div class="row1">
-		<div class="anhhoa1">
-			<a href="FlowersDetail?id=${list.id}">
-				<img src="<%= request.getContextPath()%>/${list.image} ">
-			</a>
-		</div>
-		<div class="anhhoa1asu"> 
-			<p>
-				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-					<b> ${list.product_name} </b>
-					<br>
-                                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
-                                        <br>
-                                            <form >
-                                                <button type="submit" 
-                                                        formmethod="POST" formaction="DeleteProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/thungrac.png" style="width: 30px; height: 30px">
-                                                </button>
-                                                <a style="color: black; font-size:30px">| </a>
-                                                <button type="submit" formmethod="POST" formaction="nEditProducts?id=${list.id}">
-                                                    <img src="<%= request.getContextPath()%>/Hoa/edit.png" style="width: 30px; height: 30px">
-                                                </button>
-                                            </form>
-				</a>
-			</p>
-		</div>
-	</div>	
+            <div class="row3">
+                <div class="anhhoa1">
+                    <a href="FlowersDetail?id=${list.id}">
+                        <img src="<%= request.getContextPath()%>/${list.image}">
+                    </a>
+                </div>
+                <div class="anhhoa1asu"> 
+                    <p>
+                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                            <b> ${list.product_name} </b>
+                            <br>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
+                                <b> ${list.price} </b>
+                            </a>
+                            <br>
+                            <form >
+                                <form >
+					<div class="flowerEdit">
+						<button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
+					</div>
+					<div class="flowerS">
+						<a style="color: black; font-size:22px"> | </a>
+					</div>
+					<div class="flowerDelete">
+						<button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
+					</div>
+                                        </form>
+                            </form>
+                        </a>
+                            
+                    </p>
+                </div>
+            </div>	
         </c:forEach>
         <div style="clear: both;"></div>
         <br>

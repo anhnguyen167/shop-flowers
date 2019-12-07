@@ -218,7 +218,7 @@
 #menu ul li{
     color: #f1f1f1;
     display: inline-table;
-    width:  260px;
+    width:  200px;
     height: 60px;
     line-height: 60px;
     position: relative;
@@ -420,7 +420,7 @@ body{
 	float: left;
 }
 #headerSignIn{
-	width: 33%
+	width: 33%;
 	float: right;
 }
 #contact-us{
@@ -458,3 +458,4 @@ a, a:hover{
 		display: inline;
 	}
 }
+
