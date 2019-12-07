@@ -120,78 +120,84 @@
         <h1 style="text-align: center; color: grey; font-size: 35px;"> 
             Hóa Đơn
         </h1>
-        <% User user = (User)session.getAttribute("user"); %>
+        <% User user = (User) session.getAttribute("user");%>
         <div class="addFlower1"> </div>
-        <div class="addFlower">
-            <div class="HDrow1">
-                <a style="color:pink;"> Tên Khách Hàng: </a>
-                <%= user.getFull_name() %>
-            </div>
-            <div class="HDrow1">
-                <a style="color:pink;"> Ngày Đặt: </a>
-                <% SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); %>
-                
-            </div>
-            <div class="HDrow">
-                <div>
-                    <a style="color:pink;"> Địa Chỉ: </a>
+        <form action="CreateBill" method="post">
+            <div class="addFlower">
+                <div class="HDrow1">
+                    <a style="color:pink;"> Tên Khách Hàng: </a>
+                    <%= user.getFull_name()%>
                 </div>
-                <div class="HDrowDC">
-                    <br>
-                    <input type="text" name="diachi" class="HDrowDC" style="width:500px;" value="*">
-                </div>
-            </div>
+                <div class="HDrow1">
+                    <a style="color:pink;"> Ngày Đặt: </a>
+                    <% long millis = System.currentTimeMillis();
+                        java.sql.Date date = new java.sql.Date(millis);
+                    %>
+                    <%= date%>
 
-            <div class="SP">
-                <div class="SProw1">
-                    <a style="color:pink;"> Sản Phẩm: </a>
                 </div>
-                <div class="SProw2">
-                    <div class="SProw2col">
-                        Tên
+                <div class="HDrow">
+                    <div>
+                        <a style="color:pink;"> Địa Chỉ: </a>
                     </div>
-                    <div class="SProw2col">
-                        Giá
-                    </div>
-                    <div class="SProw2col">
-                        Số Lượng
-                    </div>
-                    <div class="SProw2col">
-                        Thành Tiền
+                    <div class="HDrowDC">
+                        <br>
+                        <input type="text" name="diaChi" class="HDrowDC" style="width:500px;" value="*">
+
                     </div>
                 </div>
-                <% int index = 1; %>
-                <c:forEach items="${listSPA}" var="list">
+
+                <div class="SP">
+                    <div class="SProw1">
+                        <a style="color:pink;"> Sản Phẩm: </a>
+                    </div>
                     <div class="SProw2">
                         <div class="SProw2col">
-                            <b>${list.product.product_name}</b>
+                            Tên
                         </div>
                         <div class="SProw2col">
-                            <b>${list.product.price}</b>
+                            Giá
                         </div>
                         <div class="SProw2col">
-                            <b>${list.quantity}</b>
+                            Số Lượng
                         </div>
                         <div class="SProw2col">
-                            <% ArrayList<BasketDetail> listDT = new ArrayList<BasketDetail>(); %>
-                            <% listDT = (ArrayList<BasketDetail>) session.getAttribute("list");%>
-                            <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index - 1).getQuantity()%>
+                            Thành Tiền
                         </div>
                     </div>
-                        <% index++; %>
-                </c:forEach>
-            </div>
+                    <% int index = 1; %>
+                    <c:forEach items="${listSPA}" var="list">
+                        <div class="SProw2">
+                            <div class="SProw2col">
+                                <b>${list.product.product_name}</b>
+                            </div>
+                            <div class="SProw2col">
+                                <b>${list.product.price}</b>
+                            </div>
+                            <div class="SProw2col">
+                                <b>${list.quantity}</b>
+                            </div>
+                            <div class="SProw2col">
+                                <% ArrayList<BasketDetail> listDT = new ArrayList<BasketDetail>(); %>
+                                <% listDT = (ArrayList<BasketDetail>) session.getAttribute("list");%>
+                                <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index - 1).getQuantity()%>
+                            </div>
+                        </div>
+                        <% index++;%>
+                    </c:forEach>
+                </div>
 
-            <div class="HDrow1">
-                <a style="color:pink;"> Tổng Hóa Đơn: </a>
-                <%= request.getAttribute("total")%>
-            </div>
-            <div class="HDrow1">
-                <form action="CreateBill" method="post">
+                <div class="HDrow1">
+                    <a style="color:pink;"> Tổng Hóa Đơn: </a>
+                    <%= request.getAttribute("total")%>
+                </div>
+                <div class="HDrow1">
+
                     <button type="submit" class="btnThanhToan">Xác Nhận & Thanh Toán</button> 
-                </form>
+
+                </div>
             </div>
-        </div>
+        </form>
         <footer>
             <image src="footer.png" style="width: 100% ;height :30%">
         </footer>

@@ -5,8 +5,11 @@
  */
 package Control;
 
+import BEAN.Basket;
 import BEAN.BasketDetail;
 import BEAN.User;
+import DAO.BasketDAO;
+import DAO.BasketDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -88,16 +91,39 @@ public class CreateBill extends HttpServlet {
             ArrayList<BasketDetail> list = new ArrayList<>();
             list = (ArrayList<BasketDetail>) session.getAttribute("list");
             int total = 0;
-           // Lấy ngày trong hệ thống
-            
+            for(BasketDetail i:list){
+                total += i.getQuantity()*i.getProduct().getPrice();
+            }
+            // Lấy ngày trong hệ thống
+            long millis=System.currentTimeMillis();  
+            java.sql.Date date=new java.sql.Date(millis);       
             // Lấy địa chỉ
-            String diaChi = request.getParameter("diaChi");
+            String diaChi = request.getParameter("diaChi").toString();
+            System.out.println("CreateBill: " + diaChi);
+            // Trạng thái
+            int state = 1;
+            // Lưu vào trong cơ sở dữ liệu
+            BasketDAO basketDAO = new BasketDAO();
+            BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
+            
+            // Lưu hóa đơn vào csdl
+            Basket basket = new Basket(user, date, list, total, diaChi);
+            basketDAO.insertBasket(basket);
+            int last_id = basketDAO.getLastId();
+            basket = basketDAO.getLastBasket(last_id);
+            
+            // Lưu basket_detail vào csdl
+            for(BasketDetail i:list){
+                basketDetailDAO.insertProductIntoBasket(i, basket);
+            }
+                    
+            // Reset lại basket
             list = new ArrayList<>();
             int quantity = 0;
             session.setAttribute("list", list);
             session.setAttribute("quantity", quantity);
-           RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
-           requestDispatcher.forward(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
+            requestDispatcher.forward(request, response);
 
         }
     }
