@@ -35,9 +35,8 @@ public class SignOut extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if(session != null){
-            session.removeAttribute("basket");
+            session.removeAttribute("list");
             session.removeAttribute("quantity");
-            session.removeAttribute("isLogin");
             session.removeAttribute("user");
             session.invalidate();
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");

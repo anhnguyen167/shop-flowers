@@ -5,6 +5,7 @@
  */
 package Control;
 
+import BEAN.BasketDetail;
 import BEAN.Product;
 import DAO.ProductDAO;
 import java.io.IOException;
@@ -57,6 +58,21 @@ public class GetFlowers extends HttpServlet {
         request.setAttribute("listSP2", listSP2);
         request.setAttribute("listSP3", listSP3);
         request.setAttribute("listSP4", listSP4);
+        
+        // Khai báo session
+        HttpSession session = request.getSession();
+        
+        // Nếu chưa đăng nhập tạo session cho khách vãng la
+        if(session.getAttribute("list") == null){
+            ArrayList<BasketDetail> list = new ArrayList<>();
+            session.setAttribute("list", list);
+            session.setAttribute("quantity", list.size());
+        }else{
+            ArrayList<BasketDetail> list = (ArrayList<BasketDetail>) session.getAttribute("list");
+            int quantity = Integer.parseInt(session.getAttribute("quantity").toString());
+            session.setAttribute("list", list);
+            session.setAttribute("quantity", quantity);
+        }
         RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
         requestDispatcher.forward(request, response);
     }

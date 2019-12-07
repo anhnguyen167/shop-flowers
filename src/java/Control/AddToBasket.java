@@ -55,7 +55,22 @@ public class AddToBasket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        // Thêm vào giỏ hàng
+        int idProduct = Integer.parseInt(request.getParameter("id"));
+        ProductDAO productDAO = new ProductDAO();
+        Product product = productDAO.getProductById(idProduct);
+        ArrayList<BasketDetail> list = new ArrayList<>();
+        list = (ArrayList<BasketDetail>) session.getAttribute("list");
+        if(list == null) list = new ArrayList<>();
+        int quantity = Integer.parseInt(request.getParameter("ten"));
+        BasketDetail basketDetail = new BasketDetail(product, quantity);
+            list.add(basketDetail);
+        session.setAttribute("list", list);
+        System.out.println(session.getAttribute("list"));
+        session.setAttribute("quantity", list.size());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     /**
@@ -69,23 +84,8 @@ public class AddToBasket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO  productDAO = new ProductDAO();
-        BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
-        HttpSession session = request.getSession();
-        Basket basket = (Basket) session.getAttribute("basket");
-        if(basket != null){
-            int idProduct = Integer.parseInt(request.getParameter("id").toString());
-            Product product = productDAO.getProductById(idProduct);
-            BasketDetail basketDetail = new BasketDetail(product, 1);
-            ArrayList<BasketDetail> list = basket.getBasketDetail();
-            list.add(basketDetail);
-            basket.setBasketDetail(list);
-            basketDetailDAO.insertProductIntoBasket(basketDetail, basket);
-            session.setAttribute("basket", basket);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
-            requestDispatcher.forward(request, response);
-        }
-       
+        
+        
     }
 
     /**

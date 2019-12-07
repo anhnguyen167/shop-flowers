@@ -5,15 +5,16 @@
  */
 package Control;
 
-import BEAN.Basket;
 import BEAN.BasketDetail;
-import BEAN.Product;
-import DAO.BasketDetailDAO;
-import DAO.ProductDAO;
+import BEAN.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "ViewBasketDetail", urlPatterns = {"/ViewBasketDetail"})
-public class ViewBasketDetail extends HttpServlet {
+@WebServlet(name = "CreateBill", urlPatterns = {"/CreateBill"})
+public class CreateBill extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +40,19 @@ public class ViewBasketDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CreateBill</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CreateBill at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,31 +67,6 @@ public class ViewBasketDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        int sum = 0;
-        int total = 0;
-//        if(session.getAttribute("isLogin") != null){
-        ArrayList<BasketDetail> list = new ArrayList<>();
-        list = (ArrayList<BasketDetail>) session.getAttribute("list");
-        if (list == null) {
-            list = new ArrayList<>();
-        }
-        int quantity = list.size();
-        
-        for (BasketDetail i : list) {
-            total += i.getProduct().getPrice() * i.getQuantity();
-       
-        }
-        sum = quantity;
-//        }
-        session.setAttribute("list", list);
-        session.setAttribute("quantity", list.size());
-        System.out.println(sum);
-        request.setAttribute("listSPA", list);
-        request.setAttribute("sum", sum);
-        request.setAttribute("total", total);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/basketDetail.jsp");
-        requestDispatcher.forward(request, response);
 
     }
 
@@ -93,30 +81,19 @@ public class ViewBasketDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idProduct = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
-        ArrayList<BasketDetail> list = new ArrayList<>();
-        list = (ArrayList<BasketDetail>) session.getAttribute("list");
-        int sum = 0;
-        int total = 0;
-        for(BasketDetail i:list){
-            if(idProduct == i.getProduct().getId()){
-                list.remove(i);
-                break;
-            }
-        }
-        sum = list.size();
-        for(BasketDetail i:list){
-           total += i.getQuantity()*i.getProduct().getPrice();
-        }
-        session.setAttribute("list", list);
-        session.setAttribute("quantity", list.size());
-        request.setAttribute("listSPA", list);
-        request.setAttribute("sum", sum);
-        request.setAttribute("total", total);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/basketDetail.jsp");
-        requestDispatcher.forward(request, response);
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            ArrayList<BasketDetail> list = new ArrayList<>();
+            list = (ArrayList<BasketDetail>) session.getAttribute("list");
+            int total = 0;
+           // Lấy ngày trong hệ thống
+            
+            // Lấy địa chỉ
+            String diaChi = request.getParameter("diaChi");
+          
 
+        }
     }
 
     /**
