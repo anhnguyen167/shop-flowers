@@ -17,6 +17,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
+        <style>
+            body{
+                font-family: "Times New Roman", Times, serif;
+            }
+        </style>
     </head>
 </head>
 <body>
@@ -49,7 +54,8 @@
                 <% String name = ""; %>
                 <% if (session.getAttribute("user") != null) {%>
                 <% User user = (User) session.getAttribute("user"); %>
-                <% name = user.getUsername();
+                <% String token[] = user.getFull_name().split(" "); %>
+                <% name = token[token.length - 1];
                     }%>
                 <li id="profile" >
                     <a href="ViewOrderUser"><%= name%></a>
@@ -112,7 +118,7 @@
                 <div style="margin-top: 90px;"> <%= index%> </div>
             </div>
             <div class="GioSPCol2">
-                <a href="A2.html">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.product.image}">
                 </a>
             </div>
@@ -130,7 +136,7 @@
                         Giá:
                     </div>
                     <div class="GioSPCol3Row1Col2">
-                        <b> ${list.product.price} </b>
+                        <b> ${list.product.price}<%="$"%> </b>
                     </div>
                 </div>
                 <div class="GioSPCol3Row3">
@@ -148,7 +154,7 @@
                     <div class="GioSPCol3Row1Col2">
                         <% ArrayList<BasketDetail> listDT = new ArrayList<BasketDetail>(); %>
                         <% listDT = (ArrayList<BasketDetail>) session.getAttribute("list");%>
-                        <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index - 1).getQuantity()%>
+                        <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index - 1).getQuantity()%><%="$"%> 
                     </div>
                 </div>
                 <% index++;%>
@@ -167,7 +173,7 @@
                     Tổng Hóa Đơn:
                 </div>
                 <div class="GioSPCol3Row1Col2" style="font-size: 24px; margin-left:40px">
-                    <%= request.getAttribute("total")%>
+                    <%= request.getAttribute("total")%><%="$"%>
                 </div>
             </b>
         </div>

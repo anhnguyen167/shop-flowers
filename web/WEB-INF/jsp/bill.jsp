@@ -145,7 +145,7 @@
                     </div>
                     <div class="HDrowDC">
                         <br>
-                        <input type="text" name="diaChi" class="HDrowDC" style="width:500px;" value="*">
+                        <input type="text" name="diaChi" class="HDrowDC" style="width:500px;" value="" required/>
 
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                                 <b>${list.product.product_name}</b>
                             </div>
                             <div class="SProw2col">
-                                <b>${list.product.price}</b>
+                                <b>${list.product.price}<%="$"%></b>
                             </div>
                             <div class="SProw2col">
                                 <b>${list.quantity}</b>
@@ -192,7 +192,7 @@
 
                 <div class="HDrow1">
                     <a style="color:pink;"> Tổng Hóa Đơn: </a>
-                    <%= request.getAttribute("total")%>
+                    <%= request.getAttribute("total")%><%="$"%>
                 </div>
                 <div class="HDrow1">
 

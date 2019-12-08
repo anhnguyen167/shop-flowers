@@ -17,7 +17,7 @@
         <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
-                font-family: 'Roboto', sans-serif;
+                font-family: "Times New Roman", Times, serif;
             }
             #search-form {
                 position: relative;
@@ -72,7 +72,8 @@
                 <% String name = ""; %>
                 <% if (session.getAttribute("user") != null) {%>
                 <% User user = (User) session.getAttribute("user"); %>
-                <% name = user.getUsername();
+                <% String token[] = user.getFull_name().split(" "); %>
+                <% name = token[token.length - 1];
                     }%>
                 <li id="profile" >
                     <a href="ViewOrderUser"><%= name%></a>
@@ -85,8 +86,8 @@
                         </i>
                         <% String checkout = "Checkout"; %>
                         <% if (session.getAttribute("user") != null) {
-                                    checkout = "My Basket";
-                                }%>
+                                checkout = "My Basket";
+                            }%>
                         <span><%= checkout%></span>
                         <% if (session.getAttribute("list") != null) {%>
                         (<%= session.getAttribute("quantity")%>)
@@ -141,7 +142,7 @@
                         <b> ${list.product_name} </b>
                         <br>
                         <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
-                            <b> ${list.price} </b>
+                            <b> ${list.price}<%="$"%> </b>
                         </a>
                     </a>
                 </p>

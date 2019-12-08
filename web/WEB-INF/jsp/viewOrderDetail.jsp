@@ -142,7 +142,7 @@
                             Giá:
                         </div>
                         <div class="GioSPCol3Row1Col2">
-                            ${list.product.price}
+                            ${list.product.price}<%="$"%>
                         </div>
                     </div>
                     <div class="GioSPCol3Row3">
@@ -161,7 +161,7 @@
                 <b>
                     <div class="GioSPTongHoaDon" style="font-size: 24px;">
                         Tổng Hóa Đơn:
-                        ${basket.total}
+                        ${basket.total}<%="$"%>
                     </div>
                 </b>
             </div>

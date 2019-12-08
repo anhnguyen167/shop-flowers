@@ -16,7 +16,7 @@
         <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
-                font-family: 'Roboto', sans-serif;
+                font-family: "Times New Roman", Times, serif;
             }
             #search-form {
                 position: relative;
@@ -110,15 +110,16 @@
             </div>
             <div class="anhhoa1asu"> 
                 <p>
-                    <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                    <div class="flowerInf">
+                    <a style="text-decoration:none; text-align:center; color: black">
                         <b> ${list.product_name} </b>
                         <br>
                         <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
-                            <b> ${list.price} </b>
+                            <b> ${list.price}<%="$"%> </b>
                         </a>
                         <br>
+                        </div>
                         <form >
-                            <form >
                                 <div class="flowerEdit">
                                     <button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
                                 </div>
@@ -128,7 +129,6 @@
                                 <div class="flowerDelete">
                                     <button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
                                 </div>
-                            </form>
                         </form>
                     </a>
 
@@ -138,7 +138,7 @@
     </c:forEach>
     <br>
     <footer>
-        <image src="Hoa/footer.png" style="width: 100% ;height :30%">
+        <image src="Hoa/footer.png" style="width: 100% ;height :30%; float: left;">
     </footer>
 
     <script>

@@ -101,26 +101,27 @@
 
         <div style="clear: both;"></div>
 
-        <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Basket
             <a href="ViewAllFlowerInManager?type=1" style="color: black; font-size:17px "> View All </a>
         </h1>
 
+	<div class="row1bf"></div>
 
         <c:forEach items="${listSP1}" var="list">
             <div class="row3">
                 <div class="anhhoa1">
-                    <a href="FlowersDetail?id=${list.id}">
+                    <a>
                         <img src="<%= request.getContextPath()%>/${list.image}">
                     </a>
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
                     <div class="flowerInf">
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b> <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> 40$ </b> </a>
+                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price}<%="$"%> </b> </a>
                         </a> <br>
                     </div>
                     <form>
@@ -144,23 +145,25 @@
         <div style="clear: both;"></div>
 
         <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Bouquets
             <a href="ViewAllFlowerInManager?type=2" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP2}" var="list">
             <div class="row3">
                 <div class="anhhoa1">
-                    <a href="FlowersDetail?id=${list.id}">
+                    <a>
                         <img src="<%= request.getContextPath()%>/${list.image}">
                     </a>
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
                     <div class="flowerInf">
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b> <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> 40$ </b> </a>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price}<%="$"%> </b> </a>
                         </a> <br>
                     </div>
                     <form>
@@ -184,23 +187,25 @@
         <div style="clear: both;"></div>
 
         <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Box
             <a href="ViewAllFlowerInManager?type=3" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP3}" var="list">
             <div class="row3">
                 <div class="anhhoa1">
-                    <a href="FlowersDetail?id=${list.id}">
+                    <a>
                         <img src="<%= request.getContextPath()%>/${list.image}">
                     </a>
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
                     <div class="flowerInf">
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b> <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> 40$ </b> </a>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price}<%="$"%> </b> </a>
                         </a> <br>
                     </div>
                     <form>
@@ -223,23 +228,25 @@
         <div style="clear: both;"></div>
         <br>
         <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Shelf
             <a href="ViewAllFlowerInManager?type=4" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP4}" var="list">
             <div class="row3">
                 <div class="anhhoa1">
-                    <a href="FlowersDetail?id=${list.id}">
+                    <a>
                         <img src="<%= request.getContextPath()%>/${list.image}">
                     </a>
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
                     <div class="flowerInf">
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b> <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> 40$ </b> </a>
+                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} <%="$"%> </b> </a>
                         </a> <br>
                     </div>
                     <form>      

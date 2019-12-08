@@ -17,7 +17,7 @@
         <link href="<%=request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
-                font-family: 'Roboto', sans-serif;
+                font-family: "Times New Roman", Times, serif;
             }
             #search-form {
                 position: relative;
@@ -138,7 +138,7 @@
         <div class="Arow1">
             <div class="Arow1-row1">
                 <div class="Arow1-row1-col1">${Product.product_name}</div>
-                <div class="Arow1-row1-col2">${Product.price}</div>
+                <div class="Arow1-row1-col2">${Product.price}<%="$"%></div>
             </div>
             <div class="Arow1-row2">
                 <div class="Arow1-row2-cel">
@@ -176,50 +176,6 @@
             </div>
         </div>
         <div style="clear: both;"></div>
-        <hr>
-        <h1 style="text-align: center;"> 
-            You might also be interested in...
-        </h1>
-        <div class="row2">
-            <div class="anhhoa2">
-                <img src="Hoa/flowers(1).jpg">
-            </div>
-            <div class="anhhoa1asu"> 
-                <p>
-                    Special gift
-                </p>
-            </div>
-        </div>
-        <div class="row2">
-            <div class="anhhoa2">
-                <img src="Hoa/flowers(2).jpg">
-            </div>
-            <div class="anhhoa1asu"> 
-                <p>
-                    Special gift
-                </p>
-            </div>
-        </div>
-        <div class="row2">
-            <div class="anhhoa2">
-                <img src="Hoa/flowers(3).jpg">
-            </div>
-            <div class="anhhoa1asu"> 
-                <p>
-                    Special gift
-                </p>
-            </div>
-        </div>
-        <div class="row2">
-            <div class="anhhoa2">
-                <img src="Hoa/flowers(4).jpg">
-            </div>
-            <div class="anhhoa1asu"> 
-                <p>
-                    Special gift
-                </p>
-            </div>
-        </div>
 
         <br>
         <footer>

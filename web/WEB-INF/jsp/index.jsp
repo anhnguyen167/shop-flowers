@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <style>
             body{
-                font-family: 'Roboto', sans-serif;
+                font-family: "Times New Roman", Times, serif;
             }
             #search-form {
                 position: relative;
@@ -109,11 +109,11 @@
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
                         <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
-                    <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
-                    <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
-                    <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
-                    <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
-                    <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
@@ -125,11 +125,12 @@
 
         <div style="clear: both;"></div>
 
-        <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Basket
             <a href="ViewAll?type=1" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP1}" var="list">
             <div class="row1">
                 <div class="anhhoa1">
@@ -139,10 +140,10 @@
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a href="FlowersDetail?id=${list.id}" style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b>
                             <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b>${list.price} </b> </a>
+                            <a href="FlowersDetail?id=${list.id}" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b>${list.price}<%="$"%> </b> </a>
                         </a>
                     </p>
                 </div>
@@ -150,10 +151,12 @@
         </c:forEach>
         <div style="clear: both;"></div>
         <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Bouquets
             <a href="ViewAll?type=2" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP2}" var="list">
             <div class="row1">
                 <div class="anhhoa1">
@@ -163,10 +166,10 @@
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a href="FlowersDetail?id=${list.id}" style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b>
                             <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
+                            <a href="FlowersDetail?id=${list.id}" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price}<%="$"%> </b></a>
                         </a>
                     </p>
                 </div>
@@ -174,10 +177,12 @@
         </c:forEach>
         <div style="clear: both;"></div>
         <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Box
             <a href="ViewAll?type=3" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP3}" var="list">
             <div class="row1">
                 <div class="anhhoa1">
@@ -187,10 +192,10 @@
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a href="FlowersDetail?id=${list.id}" style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b>
                             <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
+                            <a href="FlowersDetail?id=${list.id}" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price}<%="$"%> </b></a>
                         </a>
                     </p>
                 </div>
@@ -198,10 +203,12 @@
         </c:forEach>
         <div style="clear: both;"></div>
         <hr>
+        <br>
         <h1 style="text-align: center;"> 
             Shelf
             <a href="ViewAll?type=4" style="color: black; font-size:17px "> View All </a>
         </h1>
+	<div class="row1bf"></div>
         <c:forEach items="${listSP4}" var="list">
             <div class="row1">
                 <div class="anhhoa1">
@@ -211,10 +218,10 @@
                 </div>
                 <div class="anhhoa1asu"> 
                     <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                        <a href="FlowersDetail?id=${list.id}" style="text-decoration:none; text-align:center; color: black">
                             <b> ${list.product_name} </b>
                             <br>
-                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price} </b></a>
+                            <a href="FlowersDetail?id=${list.id}" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> ${list.price}<%="$"%> </b></a>
                         </a>
                     </p>
                 </div>

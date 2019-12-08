@@ -129,7 +129,7 @@
                             Tổng Hóa Đơn:
                         </div>
                         <div class="GioSPCol3Row1Col2">
-                            ${list.total}
+                            ${list.total}<%="$"%>
                         </div>
                     </div>
                     <form>
