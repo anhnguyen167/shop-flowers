@@ -65,7 +65,17 @@ public class AddToBasket extends HttpServlet {
         if(list == null) list = new ArrayList<>();
         int quantity = Integer.parseInt(request.getParameter("ten"));
         BasketDetail basketDetail = new BasketDetail(product, quantity);
+        int check = 0;
+        for(BasketDetail i:list){
+            if(i.getProduct().getId() == idProduct){
+                i.setQuantity(i.getQuantity() + quantity);
+                check = 1;
+                break;
+            }
+        }
+        if(check == 0){
             list.add(basketDetail);
+        }
         session.setAttribute("list", list);
         System.out.println(session.getAttribute("list"));
         session.setAttribute("quantity", list.size());
