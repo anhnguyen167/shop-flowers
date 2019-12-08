@@ -41,9 +41,13 @@
     <body>
         <div id="header">
         <div id="left">
-          <form class="search-form">
-            <input type="text" name="search" placeholder="Search..">
-          </form>
+          <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
         </div>
         <div id="middle">
           <a href="nManager"> <img src="Hoa/logo.png"> </a>
@@ -101,41 +105,39 @@
         
         <div style="clear: both;"></div>
         
-        <c:forEach items="${listSPA}" var="list">
-            <div class="row3">
-                <div class="anhhoa1">
-                    <a href="FlowersDetail?id=${list.id}">
-                        <img src="<%= request.getContextPath()%>/${list.image}">
-                    </a>
-                </div>
-                <div class="anhhoa1asu"> 
-                    <p>
-                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-                            <b> ${list.product_name} </b>
-                            <br>
-                            <a style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> 
-                                <b> ${list.price} </b>
-                            </a>
-                            <br>
-                            <form >
-                                <form >
-					<div class="flowerEdit">
-						<button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
-					</div>
-					<div class="flowerS">
-						<a style="color: black; font-size:22px"> | </a>
-					</div>
-					<div class="flowerDelete">
-						<button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
-					</div>
+         <c:forEach items="${listSPA}" var="list">
+        <div class="row3">
+		<div class="anhhoa1">
+			<a href="FlowersDetail?id=${list.id}">
+				<img src="<%= request.getContextPath()%>/${list.image}">
+			</a>
+		</div>
+		<div class="anhhoa1asu"> 
+			<p>
+				<div class="flowerInf">
+				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+					<b> ${list.product_name} </b> <br>
+					<a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b> 40$ </b> </a>
+				</a> <br>
+				</div>
+                                        <form>
+                                            <div class="flowerED">
+                                                <div class="flowerEdit">
+                                                    <button type="submit" formmethod="POST"  formaction="nEditProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Edit </button> 
+                                                </div>
+                                                <div class="flowerS">
+                                                    <a style="color: black; font-size:22px"> | </a>
+                                                </div>
+                                                <div class="flowerDelete">
+                                                    <button type="submit" formmethod="POST"  formaction="DeleteProducts?id=${list.id}" style="width:50px; font-family:cursive; color:#737373;"> Delete </button> 
+                                                </div>
+                                            </div>
                                         </form>
-                            </form>
-                        </a>
-                            
-                    </p>
-                </div>
-            </div>	
+			</p>
+		</div>
+	</div>
         </c:forEach>
+        <br>
         <br>
         <footer>
 		<image src="Hoa/footer.png" style="width: 100% ;height :30%">

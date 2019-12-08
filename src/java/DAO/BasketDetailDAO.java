@@ -77,6 +77,8 @@ public class BasketDetailDAO extends DAOConnector{
 		ArrayList<BasketDetail> listBasketDetails = new ArrayList<BasketDetail>();
 		String sql = "SELECT * FROM `basket_details` WHERE `basket_id`=?";
 		try {
+                    System.out.println("sao null");
+                    System.out.println(con);
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, basketId);
 			ResultSet rs = ps.executeQuery();

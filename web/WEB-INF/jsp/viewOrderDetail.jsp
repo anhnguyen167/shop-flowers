@@ -40,9 +40,13 @@
     <body>
         <div id="header">
             <div id="left">
-                <form class="search-form">
-                    <input type="text" name="search" placeholder="Search..">
-                </form>
+                <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div id="middle">
                 <a href="nManager"> <img src="Hoa/logo.png"> </a>
@@ -118,10 +122,12 @@
 			</div>
 		</div>
 	</div>
+                        <% int index = 1;%>
     <c:forEach items="${basket.listBasketDetail}" var="list">
+        
 	<div class="GioSP">
 		<div class="GioSPCol1">
-			<div style="margin-top: 90px;"> 1 </div>
+                    <div style="margin-top: 90px;"> <%=index%></div>
 		</div>
 		<div class="GioSPCol2">
 			<a href="A2.html">
@@ -155,6 +161,7 @@
 			</div>
 		</div>
 	</div>
+                        <% index++;%>
                         </c:forEach>
 	<div class="GioSP">
 		<div>
@@ -165,9 +172,11 @@
 			</div>
 			</b>
 		</div>
+                        <form>
 		<div>
-			<button type="submit" formaction="DaHoanThanh" class="btnDatHang">Đã Hoàn Thành</button> 
+			<button type="submit"formmethod="POST" formaction="/FlowersShop/Completed?id=${basket.id}" class="btnDatHang">Đã Hoàn Thành</button> 
 		</div>
+                        </form>
 	</div>
 	
 	<footer>

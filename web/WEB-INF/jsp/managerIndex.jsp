@@ -14,6 +14,7 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <style>
             body{
                 font-family: "Times New Roman";
@@ -41,9 +42,13 @@
     <body>
 <div id="header">
         <div id="left">
-          <form class="search-form">
-            <input type="text" name="search" placeholder="Search..">
-          </form>
+          <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
         </div>
         <div id="middle">
           <a href="nManager"> <img src="Hoa/logo.png"> </a>
@@ -266,28 +271,28 @@
 	</footer>
     </body>
     <script>
-     $(function () {
-         // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
-         $('#search-input').change(function (e) {
-             // RAN AFTER your search button is clicked
-             e.preventDefault();
-             // prevent your page is reloaded
-             const text = $('#search-input').val();
-             // get text in your input
-             $.post('/FlowersShop/SearchServlet', {text}, function (data) {
-                 $('.search-data').addClass('show');
-                 $('#search-data').empty();
-                 data.forEach(item => {
-                     const ten = item.product_name;
-                      const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + '     Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
-                   $('#search-data').append(str);
+    $(function () {
+        // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+        $('#search-input').change(function (e) {
+            // RAN AFTER your search button is clicked
+            e.preventDefault();
+            // prevent your page is reloaded
+            const text = $('#search-input').val();
+            // get text in your input
+            $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                $('.search-data').addClass('show');
+                $('#search-data').empty();
+                data.forEach(item => {
+                    const ten = item.product_name;
+                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                    $('#search-data').append(str);
 
-                 });
-             });
-         });
-         $('body').click(function () {
-             $('.search-data').removeClass('show');
-         });
-     });
-    </script>
+                });
+            });
+        });
+        $('body').click(function () {
+            $('.search-data').removeClass('show');
+        });
+    });
+</script>
 </html>

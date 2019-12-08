@@ -156,7 +156,8 @@
                     <br> <br>
                     <a style="color:pink;font-style: italic;">Trạng thái:</a>
                     <br> 
-                    <a style="color:red"> ${Product.state} </a>
+                    <a style="color:red"> ${Product.state == '1' ? 'Còn' : 'Hết'}</a>
+                    
                 </div>
             </div>
             <div class="Arow1-row3">
@@ -243,7 +244,7 @@
                                 $('#search-data').empty();
                                 data.forEach(item = > {
                                 const ten = item.product_name;
-                                        const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                                        const str = '<li class="list-group-item"><a href="FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
                                         $('#search-data').append(str);
                                 });
                         })
@@ -263,5 +264,29 @@
                 if (number < 0) number = 0;
                 document.getElementById("number-text").value = number;
         }
-    </script>
+    </script><script>
+    $(function () {
+        // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+        $('#search-input').change(function (e) {
+            // RAN AFTER your search button is clicked
+            e.preventDefault();
+            // prevent your page is reloaded
+            const text = $('#search-input').val();
+            // get text in your input
+            $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                $('.search-data').addClass('show');
+                $('#search-data').empty();
+                data.forEach(item => {
+                    const ten = item.product_name;
+                    const str = '<li class="list-group-item"><a href="FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                    $('#search-data').append(str);
+
+                });
+            });
+        });
+        $('body').click(function () {
+            $('.search-data').removeClass('show');
+        });
+    });
+</script>
 </html>

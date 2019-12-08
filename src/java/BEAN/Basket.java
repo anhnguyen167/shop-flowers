@@ -107,5 +107,10 @@ public class Basket implements Serializable{
         this.state = state;
     }
 
+    @Override
+    public String toString() {
+        return "Basket{" + "id=" + id + '}';
+    }
+    
 	
 }

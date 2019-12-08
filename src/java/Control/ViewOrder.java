@@ -39,6 +39,8 @@ public class ViewOrder extends HttpServlet {
         BasketDAO basketDAO = new BasketDAO();
         ArrayList<Basket> listBasket = basketDAO.getAllBasket();
         request.setAttribute("listBasket", listBasket);
+        System.out.println("hoho");
+        System.out.println(listBasket);
   
         RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/viewOrder.jsp");
         requestDispatcher.forward(request, response);

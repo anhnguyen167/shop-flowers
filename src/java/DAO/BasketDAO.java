@@ -175,7 +175,7 @@ public class BasketDAO extends DAOConnector {
                 User user = userDAO.getUserById(user_id);
                 BasketDetailDAO basketDetailDAO = new BasketDetailDAO();
                 ArrayList<BasketDetail> listBasketDetails = basketDetailDAO.getBasketDetailByBasketId(id);
-                Basket basket = new Basket(user, booking_date, listBasketDetails, total,state, address);
+                Basket basket = new Basket(id, user, booking_date, listBasketDetails, total,state, address);
                 listBasket.add(basket);
             }
 
@@ -187,13 +187,29 @@ public class BasketDAO extends DAOConnector {
         return listBasket;
 
     }
+    public boolean updateState(Basket basket) {
+        String sql = "UPDATE `baskets` SET state=? WHERE id=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,0);
+            ps.setInt(2, basket.getId());
+            
+            int s = ps.executeUpdate();
+            System.out.println("anh xau xi");
+            System.out.println(s);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
-        UserDAO daoU = new UserDAO();
-        User user = daoU.getUserById(4);
-        BasketDAO dao = new BasketDAO();
-        Basket basket = new Basket();
-        basket.setUser(user);
-        dao.createBasket(basket);
+        
+//         BasketDAO dao = new BasketDAO();
+//         Basket basket =dao.getLastBasket(1);
+//         if(dao.updateState(basket)==true){
+//             System.out.println("OK");
+//         }
     }
 }

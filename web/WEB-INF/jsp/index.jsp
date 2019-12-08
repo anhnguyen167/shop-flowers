@@ -235,15 +235,15 @@
                 $('#search-data').empty();
                 data.forEach(item => {
                     const ten = item.product_name;
-                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                    const str = '<li class="list-group-item"><a href="FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
                     $('#search-data').append(str);
 
                 });
-            })
+            });
         });
         $('body').click(function () {
             $('.search-data').removeClass('show');
-        })
-    })
+        });
+    });
 </script>
 </html>

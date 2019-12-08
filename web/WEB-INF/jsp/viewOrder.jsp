@@ -40,9 +40,13 @@
     <body>
         <div id="header">
             <div id="left">
-                <form class="search-form">
-                    <input type="text" name="search" placeholder="Search..">
-                </form>
+                <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div id="middle">
                 <a href="nManager"> <img src="Hoa/logo.png"> </a>
@@ -63,7 +67,7 @@
                         </a>
                     </li>
                     <li id="headerSignOut">
-                        <a href="HOME.html">
+                        <a href="SignOut">
                             <span>Sign Out</span>
                         </a>
                     </li>
@@ -102,10 +106,11 @@
         <h1 style="text-align: center; color: grey; font-size: 38px;"> 
             Xem Hóa Đơn
         </h1>
+        <% int index = 1;%>
         <c:forEach items="${listBasket}" var="list">
             <div class="XemHoaDon">
                 <div class="XemHDCol1">
-                    <div style="margin-top: 90px;"> 1 </div>
+                    <div style="margin-top: 90px;"><%= index %></div>
                 </div>
                 <div class="XemHDCol2">
                     <div class="GioSPCol3Row1">
@@ -132,13 +137,15 @@
                             ${list.total}
                         </div>
                     </div>
-                        <form>
+                    <form>
                     <div class="GioSPCol3Row5">
-                        <button type="submit" formmethod="POST"  formaction="nViewOrderDetail?id=${list.id}" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 200px;"> Xem Chi Tiết </button> 
-                        <button type="submit" formaction="DaHoanThanh" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 20px;"> Đã hoàn Thành </button> 
+                        <button type="submit" formmethod="POST"  formaction="/FlowersShop/nViewOrderDetail?id=${list.id}" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 200px;"> Xem Chi Tiết </button> 
+                        
+                        <button type="submit" formmethod="POST"  formaction="/FlowersShop/Completed?id=${list.id}" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 20px;"> Đã hoàn Thành </button> 
                     </div>
-                            </form>
+                    </form>
                 </div>
+                        
             </div>
         </c:forEach>
         <div class="XemHoaDon">
