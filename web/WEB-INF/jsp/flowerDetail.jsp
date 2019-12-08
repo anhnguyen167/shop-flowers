@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@page import="BEAN.Product"%>
 <%@page import="BEAN.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -73,31 +74,22 @@
                     <% name = user.getUsername();
                         }%>
                     <li id="profile" >
-                        <a href="#"><%= name%></a>
+                        <a href="ViewOrderUser"><%= name%></a>
                     </li>
                     <li id="checkout-icon">
-                        <% String checkout = "(0)"; %>
-                        <% int quantity = 0; %>
-                        <% if (session.getAttribute("isLogin") == "false") {%>
-                        <% quantity = Integer.parseInt(session.getAttribute("quantity").toString()); %>
-                        <% if (quantity > 9) {
-                                        checkout = "(9+)";
-                                    } else {
-                                        checkout = "(" + quantity + ")";
-                                    }
-                                } %>
-                        <% if (session.getAttribute("isLogin") == "true") { %>
-                        <% quantity = Integer.parseInt(session.getAttribute("quantity").toString()); %>
-                        <% if (quantity > 9) {
-                                        checkout = "(9+)";
-                                    } else {
-                                        checkout = "(" + quantity + ")";
-                                    }
-                                }%>
+
                         <a href="ViewBasketDetail">
                             <i class="fas fa-shopping-basket" aria-hidden="true"></i>
-                            <span>Checkout</span>
-                            <%= checkout%>
+                            <% String checkout = "Checkout"; %>
+                            <% if (session.getAttribute("user") != null) {
+                                    checkout = "My Basket";
+                                }%>
+                            <span><%= checkout%></span>
+                            <% if (session.getAttribute("list") != null) {%>
+                            (<%= session.getAttribute("quantity")%>)
+                            <% } else {%>
+                            (<%= 0%>)
+                            <% }%>
                         </a>
                     </li>
                     </li>
@@ -156,20 +148,24 @@
                     <br> <br>
                     <a style="color:pink;font-style: italic;">Trạng thái:</a>
                     <br> 
-                    <a style="color:red"> ${Product.state} </a>
+                    <% Product p = (Product)request.getAttribute("Product"); %>
+                    <% int state = p.getState(); %>
+                    <% String text = "Hết hàng"; %>
+                    <% if(state == 1){
+                        text = "Còn hàng";
+                    } %>
+                    <a style="color:red"><%= text%> </a>
                 </div>
             </div>
             <div class="Arow1-row3">
                 <form action="AddToBasket" method="get">
-                    <input type="text" name="id" value="${Product.id}" style=" width:0px;height:0px;">
+                    <input type="text" name="id" value="${Product.id}" style=" width:0px;height:0px;" hidden="true">
                     <div class="Arow1-row3-col1"> 
                         <div class="Arow1-row3-col1-row1">
                             <br> Số Lượng:
                         </div>
                         <div>
-                            <button type="submit" onclick="decreaseNumber()" class="btnGiamSoLuong"> - </button> 
                             <a class="soluong"> <input id="number-text" type="text" name="ten" style="text-align:center; width:100px;height:30px;" value="1"> </a>
-                            <button type="submit" onclick="increaseNumber()" class="btnTangSoLuong"> + </button> 
                         </div>
                     </div>
                     <div class="Arow1-row3-col2"> 
@@ -252,16 +248,5 @@
                 $('.search-data').removeClass('show');
                 })
                 })
-                function increaseNumber(){
-                var number = Number(document.getElementById("number-text").value);
-                        number = number + 1;
-                        document.getElementById("number-text").value = number;
-                }
-        function decreaseNumber(){
-        var number = Number(document.getElementById("number-text").value);
-                number = number - 1;
-                if (number < 0) number = 0;
-                document.getElementById("number-text").value = number;
-        }
     </script>
 </html>

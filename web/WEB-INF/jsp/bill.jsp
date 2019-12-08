@@ -69,19 +69,22 @@
                     <% name = token[token.length - 1];
                         }%>
                     <li id="profile" >
-                        <a href="#"><%= name%></a>
+                        <a href="ViewOrderUser"><%= name%></a>
                     </li>
                     <li id="checkout-icon">
                         <a href="ViewBasketDetail">
                             <i class="fas fa-shopping-basket" aria-hidden="true">
                             </i>
-                            <span>Checkout</span>
-                            <% if (session.getAttribute("list") != null) {%>
-                            (<%= session.getAttribute("quantity")%>)
-                            <% } else {%>
-                            (<%= 0%>)
-                            <% }%>
-
+                            <% String checkout = "Checkout"; %>
+                            <% if(session.getAttribute("user") != null){
+                                checkout = "My Basket";
+                            } %>
+                            <span><%= checkout %></span>
+                            <% if(session.getAttribute("list") != null){ %>
+                            (<%= session.getAttribute("quantity") %>)
+                            <% }else{ %>
+                            (<%= 0 %>)
+                            <% } %>
                         </a>
                     </li>
 
