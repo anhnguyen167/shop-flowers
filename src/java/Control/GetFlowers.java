@@ -69,7 +69,11 @@ public class GetFlowers extends HttpServlet {
             session.setAttribute("quantity", list.size());
         }else{
             ArrayList<BasketDetail> list = (ArrayList<BasketDetail>) session.getAttribute("list");
-            int quantity = Integer.parseInt(session.getAttribute("quantity").toString());
+            
+            int quantity = 0;
+            for(BasketDetail i:list){
+                quantity += i.getQuantity();
+            }
             session.setAttribute("list", list);
             session.setAttribute("quantity", quantity);
         }
