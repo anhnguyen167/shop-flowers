@@ -54,39 +54,42 @@
             <div id="right">
                 <ul class="header-options">
                     <% String signIn = ""; %>
-                    <% if(session.getAttribute("user") == null){%>
-                    <% signIn = "Sign In"; }%>
+                    <% if (session.getAttribute("user") == null) {%>
+                    <% signIn = "Sign In";
+                        }%>
                     <li id="headerSignIn" >
-                        <a href="<%= request.getContextPath()%>/login"><%= signIn %></a>
+                        <a href="<%= request.getContextPath()%>/login"><%= signIn%></a>
                     </li>
                     <% String signOut = ""; %>
-                    <% if(session.getAttribute("user") != null){%>
-                    <% signOut = "Sign Out"; }%>
+                    <% if (session.getAttribute("user") != null) {%>
+                    <% signOut = "Sign Out";
+                        }%>
                     <li id="headerSignOut" >
-                        <a href="SignOut"><%= signOut %></a>
+                        <a href="SignOut"><%= signOut%></a>
                     </li>
                     <% String name = ""; %>
-                    <% if(session.getAttribute("user") != null){%>
-                    <% User user = (User)session.getAttribute("user"); %>
+                    <% if (session.getAttribute("user") != null) {%>
+                    <% User user = (User) session.getAttribute("user"); %>
                     <% String token[] = user.getFull_name().split(" "); %>
-                    <% name = token[token.length - 1]; }%>
+                    <% name = token[token.length - 1];
+                        }%>
                     <li id="profile" >
-                        <a href="ViewOrderUser"><%= name %></a>
+                        <a href="ViewOrderUser"><%= name%></a>
                     </li>
                     <li id="checkout-icon">
                         <a href="ViewBasketDetail">
                             <i class="fas fa-shopping-basket" aria-hidden="true">
                             </i>
                             <% String checkout = "Checkout"; %>
-                            <% if(session.getAttribute("user") != null){
-                                checkout = "My Basket";
-                            } %>
-                            <span><%= checkout %></span>
-                            <% if(session.getAttribute("list") != null){ %>
-                            (<%= session.getAttribute("quantity") %>)
-                            <% }else{ %>
-                            (<%= 0 %>)
-                            <% } %>   
+                            <% if (session.getAttribute("user") != null) {
+                                    checkout = "My Basket";
+                                }%>
+                            <span><%= checkout%></span>
+                            <% if (session.getAttribute("list") != null) {%>
+                            (<%= session.getAttribute("quantity")%>)
+                            <% } else {%>
+                            (<%= 0%>)
+                            <% }%>   
                         </a>
                     </li>
 
@@ -105,12 +108,12 @@
             <ul>
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
-                        <li><a href="#"> <b> Pink Tone </b> </a></li>
-                        <li><a href="#"> <b> Red Tone </b> </a></li>
-                        <li><a href="#"> <b> Yellow Tone </b> </a></li>
-                        <li><a href="#"> <b> Blue Tone </b> </a></li>
-                        <li><a href="#"> <b> White Tone </b> </a></li>
-                        <li><a href="#"> <b> Orange Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
@@ -129,21 +132,21 @@
         </h1>
         <c:forEach items="${listSP1}" var="list">
             <div class="row1">
-		<div class="anhhoa1">
-			<a href="FlowersDetail?id=${list.id}">
-				<img src="<%= request.getContextPath()%>/${list.image}">
-			</a>
-		</div>
-		<div class="anhhoa1asu"> 
-			<p>
-				<a href="A2.html" style="text-decoration:none; text-align:center; color: black">
-					<b> ${list.product_name} </b>
-					<br>
-						<a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b>${list.price} </b> </a>
-				</a>
-			</p>
-		</div>
-	</div>	
+                <div class="anhhoa1">
+                    <a href="FlowersDetail?id=${list.id}">
+                        <img src="<%= request.getContextPath()%>/${list.image}">
+                    </a>
+                </div>
+                <div class="anhhoa1asu"> 
+                    <p>
+                        <a href="A2.html" style="text-decoration:none; text-align:center; color: black">
+                            <b> ${list.product_name} </b>
+                            <br>
+                            <a href="Hoa/flower1.jpg" style="font-family:cursive; color:#737373; font-size:20px; text-decoration:none; text-align:center"> <b>${list.price} </b> </a>
+                        </a>
+                    </p>
+                </div>
+            </div>	
         </c:forEach>
         <div style="clear: both;"></div>
         <hr>
@@ -225,28 +228,27 @@
 
 </body>
 <script>
-    $(function () {
-        // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
-        $('#search-input').change(function (e) {
+            $(function () {
+            // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+            $('#search-input').change(function (e) {
             // RAN AFTER your search button is clicked
             e.preventDefault();
-            // prevent your page is reloaded
-            const text = $('#search-input').val();
-            // get text in your input
-            $.post('/FlowersShop/SearchServlet', {text}, function (data) {
-                $('.search-data').addClass('show');
-                $('#search-data').empty();
-                data.forEach(item => {
-                    const ten = item.product_name;
-                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
-                    $('#search-data').append(str);
-
-                });
-            })
-        });
-        $('body').click(function () {
+                    // prevent your page is reloaded
+                    const text = $('#search-input').val();
+                    // get text in your input
+                    $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                    $('.search-data').addClass('show');
+                            $('#search-data').empty();
+                            data.forEach(item = > {
+                            const ten = item.product_name;
+                                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                                    $('#search-data').append(str);
+                            });
+                    })
+            });
+                    $('body').click(function () {
             $('.search-data').removeClass('show');
-        })
-    })
+            })
+            })
 </script>
 </html>

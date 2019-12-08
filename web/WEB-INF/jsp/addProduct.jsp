@@ -95,12 +95,12 @@
             <ul>
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
-                        <li><a href="#"> <b> Pink Tone </b> </a></li>
-                        <li><a href="#"> <b> Red Tone </b> </a></li>
-                        <li><a href="#"> <b> Yellow Tone </b> </a></li>
-                        <li><a href="#"> <b> Blue Tone </b> </a></li>
-                        <li><a href="#"> <b> White Tone </b> </a></li>
-                        <li><a href="#"> <b> Orange Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
@@ -114,8 +114,8 @@
 
         <div style="clear: both;"></div>
         <h1 style="text-align: center;"> 
-		ADD New Product
-	</h1>
+            ADD New Product
+        </h1>
         <div class="Arow1">
             <form method="POST">
                 <br>
@@ -145,10 +145,10 @@
                         <td style="font-size:25px; text-decoration:none; text-align:left"> <b> State : </b> </td>
                         <td><input type="text" name="state" value="${product.state}"></td>
                     </tr>
-<!--                    <tr>
-                        <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Image : </b> </td>
-                        <td><input type="text" name="image" value="${product.image}"></td>
-                    </tr>-->
+                    <!--                    <tr>
+                                            <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Image : </b> </td>
+                                            <td><input type="text" name="image" value="${product.image}"></td>
+                                        </tr>-->
                     <tr>
                         <td style="font-size:25px; text-decoration:none; text-align:left"> <b> Description : </b> </td>
                         <td><input type="text" name="description" value="${product.description}"></td>
@@ -160,34 +160,33 @@
                 </table>
             </form>
         </div>
-                    <br>
+        <br>
         <footer>
             <image src="Hoa/footer.png" style="width: 100% ;height :30%">
         </footer>
     </body>
     <script>
-    $(function () {
-        // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
-        $('#search-input').change(function (e) {
-            // RAN AFTER your search button is clicked
-            e.preventDefault();
-            // prevent your page is reloaded
-            const text = $('#search-input').val();
-            // get text in your input
-            $.post('/FlowersShop/SearchServlet', {text}, function (data) {
-                $('.search-data').addClass('show');
-                $('#search-data').empty();
-                data.forEach(item => {
-                    const ten = item.product_name;
-                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
-                    $('#search-data').append(str);
-
+                $(function () {
+                // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+                $('#search-input').change(function (e) {
+                // RAN AFTER your search button is clicked
+                e.preventDefault();
+                        // prevent your page is reloaded
+                        const text = $('#search-input').val();
+                        // get text in your input
+                        $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                        $('.search-data').addClass('show');
+                                $('#search-data').empty();
+                                data.forEach(item = > {
+                                const ten = item.product_name;
+                                        const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                                        $('#search-data').append(str);
+                                });
+                        })
                 });
-            })
-        });
-        $('body').click(function () {
-            $('.search-data').removeClass('show');
-        })
-    })
-</script>
+                        $('body').click(function () {
+                $('.search-data').removeClass('show');
+                })
+                })
+    </script>
 </html>

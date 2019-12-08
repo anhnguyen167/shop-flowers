@@ -86,12 +86,12 @@
         <ul>
             <li><a href="#"> <b> Flowers </b> </a>
                 <ul class="sub-menu">
-                    <li><a href="#"> <b> Pink Tone </b> </a></li>
-                    <li><a href="#"> <b> Red Tone </b> </a></li>
-                    <li><a href="#"> <b> Yellow Tone </b> </a></li>
-                    <li><a href="#"> <b> Blue Tone </b> </a></li>
-                    <li><a href="#"> <b> White Tone </b> </a></li>
-                    <li><a href="#"> <b> Orange Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
                 </ul>
             </li>
             <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
