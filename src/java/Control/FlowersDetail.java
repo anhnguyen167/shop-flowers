@@ -5,7 +5,9 @@
  */
 package Control;
 
+import BEAN.BasketDetail;
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,19 +39,32 @@ public class FlowersDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> listSP= new ArrayList<>();
-        ProductDAO productDAO= new ProductDAO();
-        listSP= productDAO.getAllProduct();
-        Product product= new Product();
+        List<Product> listSP = new ArrayList<>();
+        ProductDAO productDAO = new ProductDAO();
+        listSP = productDAO.getAllProduct();
+        Product product = new Product();
         int id = Integer.parseInt(request.getParameter("id"));
-        for(int i=0;i<listSP.size();i++){
-            if(id==listSP.get(i).getId()){
-                product= listSP.get(i);
+        for (int i = 0; i < listSP.size(); i++) {
+            if (id == listSP.get(i).getId()) {
+                product = listSP.get(i);
             }
         }
+        HttpSession session = request.getSession();
+        ArrayList<BasketDetail> list;
+        int quantity = 0;
+        list = new ArrayList<>();
+        list = (ArrayList<BasketDetail>) session.getAttribute("list");
+        for (BasketDetail i : list) {
+            quantity += i.getQuantity();
+        }
+        if (session.getAttribute("user") != null) {
+            session.setAttribute("user", (User) session.getAttribute("user"));
+        }
+        session.setAttribute("list", list);
+        session.setAttribute("quantity", quantity);
         request.setAttribute("Product", product);
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/flowerDetail.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/flowerDetail.jsp");
         requestDispatcher.forward(request, response);
     }
 

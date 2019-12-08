@@ -67,12 +67,13 @@ public class ViewBasketDetail extends HttpServlet {
         
         for (BasketDetail i : list) {
             total += i.getProduct().getPrice() * i.getQuantity();
+            sum += i.getQuantity();
        
         }
-        sum = quantity;
+        
 //        }
         session.setAttribute("list", list);
-        session.setAttribute("quantity", list.size());
+        session.setAttribute("quantity", sum);
         System.out.println(sum);
         request.setAttribute("listSPA", list);
         request.setAttribute("sum", sum);

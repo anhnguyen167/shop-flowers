@@ -5,9 +5,11 @@
  */
 package Control;
 
+import BEAN.Basket;
 import BEAN.BasketDetail;
-import BEAN.Product;
-import DAO.ProductDAO;
+import BEAN.User;
+import DAO.BasketDAO;
+import DAO.BasketDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -24,8 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "GetFlowers", urlPatterns = {"/GetFlowers"})
-public class GetFlowers extends HttpServlet {
+@WebServlet(name = "ViewOrderDetailUser", urlPatterns = {"/ViewOrderDetailUser"})
+public class ViewOrderDetailUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,47 +40,7 @@ public class GetFlowers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        System.out.println(request.getQueryString());
-//        HttpSession session = request.getSession();
-//        boolean isLogin = session.getAttribute("islogin") != null ? (boolean)session.getAttribute("islogin") : false;
-//        if (!isLogin) {
-//            session = request.getSession(true);
-//            System.out.println(session.getId());
-//        } else {
-//            //xu ly khi ma nguoi dung da dang nhap    
-//        }
-        
-        response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productDAO = new ProductDAO();
-        ArrayList<Product> listSP1 = productDAO.getProductsByTypeLimit(1);
-        ArrayList<Product> listSP2 = productDAO.getProductsByTypeLimit(2);
-        ArrayList<Product> listSP3 = productDAO.getProductsByTypeLimit(3);
-        ArrayList<Product> listSP4 = productDAO.getProductsByTypeLimit(4);
-        request.setAttribute("listSP1", listSP1);
-        request.setAttribute("listSP2", listSP2);
-        request.setAttribute("listSP3", listSP3);
-        request.setAttribute("listSP4", listSP4);
-        
-        // Khai báo session
-        HttpSession session = request.getSession();
-        
-        // Nếu chưa đăng nhập tạo session cho khách vãng la
-        if(session.getAttribute("list") == null){
-            ArrayList<BasketDetail> list = new ArrayList<>();
-            session.setAttribute("list", list);
-            session.setAttribute("quantity", list.size());
-        }else{
-            ArrayList<BasketDetail> list = (ArrayList<BasketDetail>) session.getAttribute("list");
-            
-            int quantity = 0;
-            for(BasketDetail i:list){
-                quantity += i.getQuantity();
-            }
-            session.setAttribute("list", list);
-            session.setAttribute("quantity", quantity);
-        }
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
-        requestDispatcher.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -107,7 +69,18 @@ public class GetFlowers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            int id_basket = Integer.parseInt(request.getParameter("id").toString());
+            Basket basket = new Basket();
+            BasketDAO basketDAO = new BasketDAO();
+            basket = basketDAO.getLastBasket(id_basket);
+            System.out.println(basket.getUser().getFull_name());
+            request.setAttribute("basket", basket);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewOrderDetailUser.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 
     /**

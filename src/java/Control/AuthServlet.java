@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Basket;
+import BEAN.BasketDetail;
 import BEAN.User;
 import DAO.BasketDAO;
 import DAO.UserDAO;
@@ -96,7 +97,11 @@ public class AuthServlet extends HttpServlet {
             session.setAttribute("user", user);
             ArrayList<BEAN.BasketDetail> list = (ArrayList<BEAN.BasketDetail>) session.getAttribute("list");
             int quantity = 0;
-            if(list != null) quantity = list.size();
+            if(list != null){
+                for(BasketDetail i:list){
+                    quantity += i.getQuantity();
+                }
+            }
             session.setAttribute("list", list);
             session.setAttribute("quantity", quantity);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
@@ -111,16 +116,6 @@ public class AuthServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         }
     }
-    private Basket initBasket(User user){
-            BasketDAO basketDAO = new BasketDAO();
-            Basket basket = basketDAO.getBasketByUserId(user);
-            if(basket == null){
-                basket = new Basket();
-                basket.setUser(user);
-                basketDAO.createBasket(basket);
-                System.out.println("vao ham initBasket");
-            }
-            return basket;
-    }
+    
 
 }

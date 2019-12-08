@@ -5,27 +5,24 @@
  */
 package Control;
 
-import BEAN.BasketDetail;
 import BEAN.Product;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "GetFlowers", urlPatterns = {"/GetFlowers"})
-public class GetFlowers extends HttpServlet {
+@WebServlet(name = "GetFlowersByTone", urlPatterns = {"/GetFlowersByTone"})
+public class GetFlowersByTone extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,46 +35,11 @@ public class GetFlowers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        System.out.println(request.getQueryString());
-//        HttpSession session = request.getSession();
-//        boolean isLogin = session.getAttribute("islogin") != null ? (boolean)session.getAttribute("islogin") : false;
-//        if (!isLogin) {
-//            session = request.getSession(true);
-//            System.out.println(session.getId());
-//        } else {
-//            //xu ly khi ma nguoi dung da dang nhap    
-//        }
-        
-        response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productDAO = new ProductDAO();
-        ArrayList<Product> listSP1 = productDAO.getProductsByTypeLimit(1);
-        ArrayList<Product> listSP2 = productDAO.getProductsByTypeLimit(2);
-        ArrayList<Product> listSP3 = productDAO.getProductsByTypeLimit(3);
-        ArrayList<Product> listSP4 = productDAO.getProductsByTypeLimit(4);
-        request.setAttribute("listSP1", listSP1);
-        request.setAttribute("listSP2", listSP2);
-        request.setAttribute("listSP3", listSP3);
-        request.setAttribute("listSP4", listSP4);
-        
-        // Khai báo session
-        HttpSession session = request.getSession();
-        
-        // Nếu chưa đăng nhập tạo session cho khách vãng la
-        if(session.getAttribute("list") == null){
-            ArrayList<BasketDetail> list = new ArrayList<>();
-            session.setAttribute("list", list);
-            session.setAttribute("quantity", list.size());
-        }else{
-            ArrayList<BasketDetail> list = (ArrayList<BasketDetail>) session.getAttribute("list");
-            
-            int quantity = 0;
-            for(BasketDetail i:list){
-                quantity += i.getQuantity();
-            }
-            session.setAttribute("list", list);
-            session.setAttribute("quantity", quantity);
-        }
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+        int tone = Integer.parseInt(request.getParameter("tone").toString());
+        ProductDAO pdao = new ProductDAO();
+        ArrayList<Product> listSP = pdao.getProductsByColor(tone);
+        request.setAttribute("listSPA", listSP);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewAll.jsp");
         requestDispatcher.forward(request, response);
     }
 

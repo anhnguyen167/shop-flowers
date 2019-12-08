@@ -69,19 +69,22 @@
                     <% name = token[token.length - 1];
                         }%>
                     <li id="profile" >
-                        <a href="#"><%= name%></a>
+                        <a href="ViewOrderUser"><%= name%></a>
                     </li>
                     <li id="checkout-icon">
                         <a href="ViewBasketDetail">
                             <i class="fas fa-shopping-basket" aria-hidden="true">
                             </i>
-                            <span>Checkout</span>
+                            <% String checkout = "Checkout"; %>
+                            <% if (session.getAttribute("user") != null) {
+                                    checkout = "My Basket";
+                                }%>
+                            <span><%= checkout%></span>
                             <% if (session.getAttribute("list") != null) {%>
                             (<%= session.getAttribute("quantity")%>)
                             <% } else {%>
                             (<%= 0%>)
-                            <% }%>
-
+                            <% } %>
                         </a>
                     </li>
 
@@ -100,12 +103,12 @@
             <ul>
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
-                        <li><a href="#"> <b> Pink Tone </b> </a></li>
-                        <li><a href="#"> <b> Red Tone </b> </a></li>
-                        <li><a href="#"> <b> Yellow Tone </b> </a></li>
-                        <li><a href="#"> <b> Blue Tone </b> </a></li>
-                        <li><a href="#"> <b> White Tone </b> </a></li>
-                        <li><a href="#"> <b> Orange Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
+                        <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
@@ -142,7 +145,7 @@
                     </div>
                     <div class="HDrowDC">
                         <br>
-                        <input type="text" name="diaChi" class="HDrowDC" style="width:500px;" value="*">
+                        <input type="text" name="diaChi" class="HDrowDC" style="width:500px;" value="" required/>
 
                     </div>
                 </div>
@@ -172,7 +175,7 @@
                                 <b>${list.product.product_name}</b>
                             </div>
                             <div class="SProw2col">
-                                <b>${list.product.price}</b>
+                                <b>${list.product.price}<%="$"%></b>
                             </div>
                             <div class="SProw2col">
                                 <b>${list.quantity}</b>
@@ -189,7 +192,7 @@
 
                 <div class="HDrow1">
                     <a style="color:pink;"> Tổng Hóa Đơn: </a>
-                    <%= request.getAttribute("total")%>
+                    <%= request.getAttribute("total")%><%="$"%>
                 </div>
                 <div class="HDrow1">
 

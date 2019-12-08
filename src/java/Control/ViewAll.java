@@ -5,7 +5,9 @@
  */
 package Control;
 
+import BEAN.BasketDetail;
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,6 +43,20 @@ public class ViewAll extends HttpServlet {
 //        System.out.println("UserID " + id);
 //        System.out.println(request.getQueryString());
 //        String categoryId;
+         HttpSession session = request.getSession();
+        ArrayList<BasketDetail> list;
+        int quantity = 0;
+        list = new ArrayList<>();
+        list = (ArrayList<BasketDetail>) session.getAttribute("list");
+        for (BasketDetail i : list) {
+            quantity += i.getQuantity();
+        }
+        if (session.getAttribute("user") != null) {
+            session.setAttribute("user", (User) session.getAttribute("user"));
+        }
+        session.setAttribute("list", list);
+        session.setAttribute("quantity", quantity);
+        
         response.setContentType("text/html;charset=UTF-8");
         ProductDAO productDAO = new ProductDAO();
         int type = Integer.parseInt(request.getParameter("type"));

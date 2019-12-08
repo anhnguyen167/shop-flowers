@@ -17,6 +17,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
+        <style>
+            body{
+                font-family: "Times New Roman", Times, serif;
+            }
+        </style>
     </head>
 </head>
 <body>
@@ -35,33 +40,40 @@
                 <% String signIn = ""; %>
                 <% if (session.getAttribute("user") == null) {%>
                 <% signIn = "Sign In";
-                        }%>
+                    }%>
                 <li id="headerSignIn" >
                     <a href="<%= request.getContextPath()%>/login"><%= signIn%></a>
                 </li>
                 <% String signOut = ""; %>
                 <% if (session.getAttribute("user") != null) {%>
                 <% signOut = "Sign Out";
-                        }%>
+                    }%>
                 <li id="headerSignOut" >
                     <a href="SignOut"><%= signOut%></a>
                 </li>
                 <% String name = ""; %>
                 <% if (session.getAttribute("user") != null) {%>
                 <% User user = (User) session.getAttribute("user"); %>
-                <% name = user.getUsername();
-                        }%>
+                <% String token[] = user.getFull_name().split(" "); %>
+                <% name = token[token.length - 1];
+                    }%>
                 <li id="profile" >
-                    <a href="#"><%= name%></a>
+                    <a href="ViewOrderUser"><%= name%></a>
                 </li>
                 <li id="checkout-icon">
                     <a href="ViewBasketDetail">
                         <i class="fas fa-shopping-basket" aria-hidden="true">
                         </i>
-
-                        <span>Checkout</span>
-                        <%--<%=checkout%>--%>
-                        (<%=request.getAttribute("sum")%>)
+                        <% String checkout = "Checkout"; %>
+                        <% if (session.getAttribute("user") != null) {
+                                checkout = "My Basket";
+                            }%>
+                        <span><%= checkout%></span>
+                        <% if (session.getAttribute("list") != null) {%>
+                        (<%= session.getAttribute("quantity")%>)
+                        <% } else {%>
+                        (<%= 0%>)
+                        <% } %>
                     </a>
                 </li>
 
@@ -80,12 +92,12 @@
         <ul>
             <li><a href="#"> <b> Flowers </b> </a>
                 <ul class="sub-menu">
-                    <li><a href="#"> <b> Pink Tone </b> </a></li>
-                    <li><a href="#"> <b> Red Tone </b> </a></li>
-                    <li><a href="#"> <b> Yellow Tone </b> </a></li>
-                    <li><a href="#"> <b> Blue Tone </b> </a></li>
-                    <li><a href="#"> <b> White Tone </b> </a></li>
-                    <li><a href="#"> <b> Orange Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
+                    <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
                 </ul>
             </li>
             <li><a href="ViewAll?type=3"> <b> Flowers Box </b> </a></li>
@@ -106,7 +118,7 @@
                 <div style="margin-top: 90px;"> <%= index%> </div>
             </div>
             <div class="GioSPCol2">
-                <a href="A2.html">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.product.image}">
                 </a>
             </div>
@@ -124,7 +136,7 @@
                         Giá:
                     </div>
                     <div class="GioSPCol3Row1Col2">
-                        <b> ${list.product.price} </b>
+                        <b> ${list.product.price}<%="$"%> </b>
                     </div>
                 </div>
                 <div class="GioSPCol3Row3">
@@ -142,7 +154,7 @@
                     <div class="GioSPCol3Row1Col2">
                         <% ArrayList<BasketDetail> listDT = new ArrayList<BasketDetail>(); %>
                         <% listDT = (ArrayList<BasketDetail>) session.getAttribute("list");%>
-                        <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index-1).getQuantity()%>
+                        <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index - 1).getQuantity()%><%="$"%> 
                     </div>
                 </div>
                 <% index++;%>
@@ -161,7 +173,7 @@
                     Tổng Hóa Đơn:
                 </div>
                 <div class="GioSPCol3Row1Col2" style="font-size: 24px; margin-left:40px">
-                    <%= request.getAttribute("total")%>
+                    <%= request.getAttribute("total")%><%="$"%>
                 </div>
             </b>
         </div>
