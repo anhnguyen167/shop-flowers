@@ -284,7 +284,7 @@
                         $.post('/FlowersShop/SearchServlet', {text}, function (data) {
                         $('.search-data').addClass('show');
                                 $('#search-data').empty();
-                                data.forEach(item = > {
+                                data.forEach(item => {
                                 const ten = item.product_name;
                                         const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + '     Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
                                         $('#search-data').append(str);

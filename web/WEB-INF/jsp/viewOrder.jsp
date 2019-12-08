@@ -40,9 +40,13 @@
     <body>
         <div id="header">
             <div id="left">
-                <form class="search-form">
-                    <input type="text" name="search" placeholder="Search..">
-                </form>
+                <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div id="middle">
                 <a href="nManager"> <img src="Hoa/logo.png"> </a>
@@ -63,7 +67,7 @@
                         </a>
                     </li>
                     <li id="headerSignOut">
-                        <a href="HOME.html">
+                        <a href="SignOut">
                             <span>Sign Out</span>
                         </a>
                     </li>
@@ -83,12 +87,12 @@
             <ul>
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
-                        <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>F
+                        <li><a href="#"> <b> Pink Tone </b> </a></li>
+                        <li><a href="#"> <b> Red Tone </b> </a></li>
+                        <li><a href="#"> <b> Yellow Tone </b> </a></li>
+                        <li><a href="#"> <b> Blue Tone </b> </a></li>
+                        <li><a href="#"> <b> White Tone </b> </a></li>
+                        <li><a href="#"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li><a href="ViewAllFlowerInManager?type=3"> <b> Flowers Box </b> </a></li>
@@ -102,10 +106,11 @@
         <h1 style="text-align: center; color: grey; font-size: 38px;"> 
             Xem Hóa Đơn
         </h1>
+        <% int index = 1;%>
         <c:forEach items="${listBasket}" var="list">
             <div class="XemHoaDon">
                 <div class="XemHDCol1">
-                    <div style="margin-top: 90px;"> 1 </div>
+                    <div style="margin-top: 90px;"><%= index %></div>
                 </div>
                 <div class="XemHDCol2">
                     <div class="GioSPCol3Row1">
@@ -129,16 +134,18 @@
                             Tổng Hóa Đơn:
                         </div>
                         <div class="GioSPCol3Row1Col2">
-                            ${list.total}<%="$"%>
+                            ${list.total}
                         </div>
                     </div>
                     <form>
-                        <div class="GioSPCol3Row5">
-                            <button type="submit" formmethod="POST"  formaction="nViewOrderDetail?id=${list.id}" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 200px;"> Xem Chi Tiết </button> 
-                            <button type="submit" formaction="DaHoanThanh" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 20px;"> Đã hoàn Thành </button> 
-                        </div>
+                    <div class="GioSPCol3Row5">
+                        <button type="submit" formmethod="POST"  formaction="/FlowersShop/nViewOrderDetail?id=${list.id}" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 200px;"> Xem Chi Tiết </button> 
+                        
+                        <button type="submit" formmethod="POST"  formaction="/FlowersShop/Completed?id=${list.id}" style="width:100px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 20px;"> Đã hoàn Thành </button> 
+                    </div>
                     </form>
                 </div>
+                        
             </div>
         </c:forEach>
         <div class="XemHoaDon">
@@ -148,4 +155,28 @@
             <image src="footer.png" style="width: 100% ;height :30%">
         </footer>
     </body>
+    <script>
+            $(function () {
+            // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+            $('#search-input').change(function (e) {
+            // RAN AFTER your search button is clicked
+            e.preventDefault();
+                    // prevent your page is reloaded
+                    const text = $('#search-input').val();
+                    // get text in your input
+                    $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                    $('.search-data').addClass('show');
+                            $('#search-data').empty();
+                            data.forEach(item => {
+                            const ten = item.product_name;
+                                    const str = '<li class="list-group-item"><a href="/BTL/ChuyenTrangChiTiet?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                                    $('#search-data').append(str);
+                            });
+                    })
+            });
+                    $('body').click(function () {
+            $('.search-data').removeClass('show');
+            })
+            })
+</script>
 </html>
