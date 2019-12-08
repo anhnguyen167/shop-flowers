@@ -65,10 +65,10 @@
                         <a href="SignOut"><%= signOut%></a>
                     </li>
                     <% String name = ""; %>
-                    <% if (session.getAttribute("user") != null) {%>
-                    <% User user = (User) session.getAttribute("user"); %>
-                    <% name = user.getUsername();
-                        }%>
+                    <% if(session.getAttribute("user") != null){%>
+                    <% User user = (User)session.getAttribute("user"); %>
+                    <% String token[] = user.getFull_name().split(" "); %>
+                    <% name = token[token.length - 1]; }%>
                     <li id="profile" >
                         <a href="ViewOrderUser"><%= name%></a>
                     </li>

@@ -107,7 +107,6 @@ public class SignUp extends HttpServlet {
         }
         else{
             User user = new User(username, password, fullname, address, email, phone, role);
-            udao.insertUser(user);
             RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
             requestDispatcher.forward(request, response);
         }
