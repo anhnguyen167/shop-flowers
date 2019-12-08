@@ -112,7 +112,7 @@
         </h1>
 	<div class="row1bf"></div>
     <c:forEach items="${listSP1}" var="list">
-        <div class="row3">
+        <div class="row1">
             <div class="anhhoa1">
                 <a href="FlowersDetail?id=${list.id}">
                     <img src="<%= request.getContextPath()%>/${list.image}">
@@ -155,7 +155,7 @@
         </h1>
 	<div class="row1bf"></div>
     <c:forEach items="${listSP2}" var="list">
-        <div class="row3">
+        <div class="row1">
             <div class="anhhoa1">
                 <a href="FlowersDetail?id=${list.id}">
                     <img src="<%= request.getContextPath()%>/${list.image}">
@@ -198,7 +198,7 @@
         </h1>
 	<div class="row1bf"></div>
     <c:forEach items="${listSP3}" var="list">
-        <div class="row3">
+        <div class="row1">
             <div class="anhhoa1">
                 <a href="FlowersDetail?id=${list.id}">
                     <img src="<%= request.getContextPath()%>/${list.image}">
@@ -241,7 +241,7 @@
         </h1>
 	<div class="row1bf"></div>
     <c:forEach items="${listSP4}" var="list">
-        <div class="row3">
+        <div class="row1">
             <div class="anhhoa1">
                 <a href="FlowersDetail?id=${list.id}">
                     <img src="<%= request.getContextPath()%>/${list.image}">
