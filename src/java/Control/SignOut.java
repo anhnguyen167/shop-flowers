@@ -39,6 +39,7 @@ public class SignOut extends HttpServlet {
             session.removeAttribute("quantity");
             session.removeAttribute("user");
             session.invalidate();
+            
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/click.jsp");
             requestDispatcher.forward(request, response);
         }
