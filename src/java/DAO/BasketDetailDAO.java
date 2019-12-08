@@ -12,11 +12,10 @@ import java.util.ArrayList;
 
 
 
-public class BasketDetailDAO extends DAOConnector{
+public class BasketDetailDAO extends connectDB{
 	private Connection con;
 	private ProductDAO productDAO;
 	public BasketDetailDAO(){
-		getInstance();
 		con = connectDB.connectDB();
 		productDAO = new ProductDAO();
 	}
@@ -98,6 +97,6 @@ public class BasketDetailDAO extends DAOConnector{
 	}
         public static void main(String[] args) {
             BasketDetailDAO dao = new BasketDetailDAO();
-            
+            System.out.println(dao.getBasketDetailByBasketId(2));
     }
 }

@@ -15,13 +15,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BasketDAO extends DAOConnector {
+public class BasketDAO extends connectDB {
 
     private Connection con;
     private BasketDetailDAO basketDetailDAO;
 
     public BasketDAO() {
-        getInstance();
         con = connectDB.connectDB();
         basketDetailDAO = new BasketDetailDAO();
     }
@@ -134,26 +133,27 @@ public class BasketDAO extends DAOConnector {
 	// Khi bắt đầu mỗi lần đăng nhập mới cần kiểm tra xem giỏ hàng của khách hàng này đã có chưa
     // Nếu có rồi thì booking_date của giỏ hàng sẽ ở dạng 1000-10-10 và trả về giỏ hàng này
     // Nếu chưa có thì tạo một giỏ hàng mới
-    public Basket getBasketByUserId(User user) {
-        Basket basket = null;
-        String sql = "SELECT * FROM `baskets` WHERE `user_id`=? AND `booking_date`='1000-10-10'";
+    public ArrayList<Basket> getBasketByUserId(User user) {
+        ArrayList<Basket> listBasket = null;
+        String sql = "SELECT * FROM `baskets` WHERE `user_id`=?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, user.getId());
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            listBasket = new ArrayList<>();
+            while (rs.next()) {
                 int id = rs.getInt(1);
-
                 ArrayList<BasketDetail> listBasketDetail = basketDetailDAO.getBasketDetailByBasketId(id);
-                //basket = new Basket(id, user, rs.getDate(3), listBasketDetail, rs.getInt(4));
+                Basket basket = new Basket(id, user, rs.getDate(3), listBasketDetail, rs.getInt(4), rs.getInt(6), rs.getString(5));
+                listBasket.add(basket);
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        return basket;
+        return listBasket;
     }
 
     public static ArrayList<Basket> getAllBasket() {
