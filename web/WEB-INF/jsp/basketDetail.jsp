@@ -35,14 +35,14 @@
                 <% String signIn = ""; %>
                 <% if (session.getAttribute("user") == null) {%>
                 <% signIn = "Sign In";
-                        }%>
+                    }%>
                 <li id="headerSignIn" >
                     <a href="<%= request.getContextPath()%>/login"><%= signIn%></a>
                 </li>
                 <% String signOut = ""; %>
                 <% if (session.getAttribute("user") != null) {%>
                 <% signOut = "Sign Out";
-                        }%>
+                    }%>
                 <li id="headerSignOut" >
                     <a href="SignOut"><%= signOut%></a>
                 </li>
@@ -50,18 +50,24 @@
                 <% if (session.getAttribute("user") != null) {%>
                 <% User user = (User) session.getAttribute("user"); %>
                 <% name = user.getUsername();
-                        }%>
+                    }%>
                 <li id="profile" >
-                    <a href="#"><%= name%></a>
+                    <a href="ViewOrderUser"><%= name%></a>
                 </li>
                 <li id="checkout-icon">
                     <a href="ViewBasketDetail">
                         <i class="fas fa-shopping-basket" aria-hidden="true">
                         </i>
-
-                        <span>Checkout</span>
-                        <%--<%=checkout%>--%>
-                        (<%=request.getAttribute("sum")%>)
+                        <% String checkout = "Checkout"; %>
+                        <% if (session.getAttribute("user") != null) {
+                                checkout = "My Basket";
+                            }%>
+                        <span><%= checkout%></span>
+                        <% if (session.getAttribute("list") != null) {%>
+                        (<%= session.getAttribute("quantity")%>)
+                        <% } else {%>
+                        (<%= 0%>)
+                        <% } %>
                     </a>
                 </li>
 
@@ -142,7 +148,7 @@
                     <div class="GioSPCol3Row1Col2">
                         <% ArrayList<BasketDetail> listDT = new ArrayList<BasketDetail>(); %>
                         <% listDT = (ArrayList<BasketDetail>) session.getAttribute("list");%>
-                        <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index-1).getQuantity()%>
+                        <%= listDT.get(index - 1).getProduct().getPrice() * listDT.get(index - 1).getQuantity()%>
                     </div>
                 </div>
                 <% index++;%>
