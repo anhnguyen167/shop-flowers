@@ -197,7 +197,8 @@
                             $('#search-data').empty();
                             data.forEach(item => {
                             const ten = item.product_name;
-                                    const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                            const trangthai=item.state;
+                                    const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
                                     $('#search-data').append(str);
                             });
                     })

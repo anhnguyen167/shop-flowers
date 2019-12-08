@@ -41,10 +41,14 @@
 <body>
     <div id="header">
         <div id="left">
-            <form class="search-form">
-                <input type="text" name="search" placeholder="Search..">
-            </form>
-        </div>
+                <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
+            </div>
         <div id="middle">
             <a href="nManager"> <img src="Hoa/logo.png"> </a>
         </div>
@@ -155,7 +159,8 @@
                             $('#search-data').empty();
                             data.forEach(item => {
                             const ten = item.product_name;
-                                    const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.tinhtrang === 'con' ? 'Còn' : 'Hết') + '</a></li>';
+                            const trangthai=item.state;
+                                    const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
                                     $('#search-data').append(str);
                             });
                     })
