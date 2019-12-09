@@ -136,6 +136,7 @@
 		</div>
 		<div class="GioSPCol3">
 			<div class="GioSPCol3Row1">
+                                <div class="GioSPCol3Row3Col0"></div>
 				<div class="GioSPCol3Row3Col1">
 					Tên:
 				</div>
@@ -144,6 +145,7 @@
 				</div>
 			</div>
 			<div class="GioSPCol3Row2">
+                                <div class="GioSPCol3Row3Col0"></div>
 				<div class="GioSPCol3Row3Col1">
 					Giá:
 				</div>
@@ -152,6 +154,7 @@
 				</div>
 			</div>
 			<div class="GioSPCol3Row3">
+                                <div class="GioSPCol3Row3Col0"></div>
 				<div class="GioSPCol3Row3Col1">
 					Số Lượng:
 				</div>

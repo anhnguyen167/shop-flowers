@@ -114,7 +114,7 @@
     <c:forEach items="${listSP1}" var="list">
         <div class="row1">
             <div class="anhhoa1">
-                <a href="">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.image}">
                 </a>
             </div>
@@ -157,7 +157,7 @@
     <c:forEach items="${listSP2}" var="list">
         <div class="row1">
             <div class="anhhoa1">
-                <a href="">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.image}">
                 </a>
             </div>
@@ -200,7 +200,7 @@
     <c:forEach items="${listSP3}" var="list">
         <div class="row1">
             <div class="anhhoa1">
-                <a href="">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.image}">
                 </a>
             </div>
@@ -243,7 +243,7 @@
     <c:forEach items="${listSP4}" var="list">
         <div class="row1">
             <div class="anhhoa1">
-                <a href="">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.image}">
                 </a>
             </div>

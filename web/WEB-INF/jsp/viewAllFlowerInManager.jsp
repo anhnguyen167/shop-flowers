@@ -108,7 +108,7 @@
     <c:forEach items="${listSPA}" var="list">
         <div class="row3">
             <div class="anhhoa1">
-                <a href="">
+                <a>
                     <img src="<%= request.getContextPath()%>/${list.image}">
                 </a>
             </div>

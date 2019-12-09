@@ -73,8 +73,8 @@
 	height: 18%;
 	float: left;
 }
-.GioSPCol3Row3Col1{
-	width: 15%;
+.GioSPCol3Row3Col0{
+	width: 8%;
 	height: 100%;
 	float: left;
 	text-align: center;
@@ -82,8 +82,17 @@
 	font-size: 20px;
 	color: grey;
 }
+.GioSPCol3Row3Col1{
+	width: 15%;
+	height: 100%;
+	float: left;
+	text-align: left;
+	margin-top: 35px;
+	font-size: 20px;
+	color: grey;
+}
 .GioSPCol3Row3Col2{
-	width: 75%;
+	width: 65%;
 	height: 100%;
 	float: left;
 	margin-bottom: 40px;
@@ -94,7 +103,7 @@
 	float: left;
 }
 .GioSPCol3Row5{
-	width: 100%;
+	width: 70%;
 	height: 18%;
 	float: left;
 }

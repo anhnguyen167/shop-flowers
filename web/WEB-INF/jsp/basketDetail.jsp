@@ -124,6 +124,7 @@
             </div>
             <div class="GioSPCol3">
                 <div class="GioSPCol3Row1">
+                    <div class="GioSPCol3Row3Col0"></div>
                     <div class="GioSPCol3Row3Col1">
                         Tên:
                     </div>
@@ -132,6 +133,7 @@
                     </div>
                 </div>
                 <div class="GioSPCol3Row2">
+                    <div class="GioSPCol3Row3Col0"></div>
                     <div class="GioSPCol3Row3Col1">
                         Giá:
                     </div>
@@ -140,6 +142,7 @@
                     </div>
                 </div>
                 <div class="GioSPCol3Row3">
+                    <div class="GioSPCol3Row3Col0"></div>
                     <div class="GioSPCol3Row3Col1">
                         Số Lượng:
                     </div>
@@ -148,6 +151,7 @@
                     </div>
                 </div>
                 <div class="GioSPCol3Row4">
+                    <div class="GioSPCol3Row3Col0"></div>
                     <div class="GioSPCol3Row3Col1">
                         Thành Tiền:
                     </div>
@@ -158,6 +162,8 @@
                     </div>
                 </div>
                 <% index++;%>
+                <div class="GioSPCol3Row3Col0"></div>
+                <div class="GioSPCol3Row3Col0"></div>
                 <div class="GioSPCol3Row5">
                     <form method="post" action="ViewBasketDetail?id=${list.product.id}">
                         <button type="submit" style="width:50px; font-family:cursive; color:#737373; margin-top: 30px; margin-left: 200px;"> Delete </button> 
