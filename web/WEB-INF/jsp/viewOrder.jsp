@@ -145,7 +145,7 @@
                     </div>
                     </form>
                 </div>
-                        
+                 <% index++;%>       
             </div>
         </c:forEach>
         <div class="XemHoaDon">

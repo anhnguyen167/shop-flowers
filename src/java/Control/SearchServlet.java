@@ -44,7 +44,13 @@ public class SearchServlet extends HttpServlet {
             Gson gson = new Gson();
             List<Product> listSP = new ArrayList<>();
             ProductDAO productDAO = new ProductDAO();
-            listSP = productDAO.getProductsByName(text);
+            try {
+                int price = Integer.parseInt(text);
+                listSP = productDAO.getProductsByPrice(price);
+            } catch (Exception e) {
+                listSP = productDAO.getProductsByName(text);
+            }
+           
             String json = gson.toJson(listSP);
             System.out.println("ResultingJSONstring = " + json);
             out.println(json);

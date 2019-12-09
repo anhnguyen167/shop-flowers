@@ -202,20 +202,20 @@
     <div class="GioSP">
         <div style="margin-left: 300px; margin-top: 20px;">
             <b>
-                <div class="GioSPCol3Row3Col1" style="font-size: 24px;">
+                <div class="GioSPCol3Row3Col1" style="font-size: 20px;">
                     Tổng Hóa Đơn:
                 </div>
-                <div class="GioSPCol3Row1Col2" style="font-size: 24px; margin-left:40px">
+                <div class="GioSPCol3Row1Col2" style="font-size: 20px; margin-left:40px">
                     <%= request.getAttribute("total")%><%="$"%>
                 </div>
             </b>
         </div>
         <div style="margin-left: 300px;">
             <b>
-                <div class="GioSPCol3Row3Col1" style="font-size: 24px;">
+                <div class="GioSPCol3Row3Col1" style="font-size: 20px;">
                     Tổng Sản Phẩm:
                 </div>
-                <div class="GioSPCol3Row1Col2" style="font-size: 24px; margin-left:40px">
+                <div class="GioSPCol3Row1Col2" style="font-size: 20px; margin-left:40px">
                     <%=request.getAttribute("sum")%>
                 </div>
             </b>

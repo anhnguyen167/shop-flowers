@@ -242,6 +242,35 @@ public class ProductDAO extends connectDB{
 		
 		return listProduct;
 	}
+        public ArrayList<Product> getProductsByPrice(int _price){
+            Connection con= connectDB.connectDB();
+		ArrayList<Product> listProduct = new ArrayList<Product>();
+		String sql = "SELECT * FROM products WHERE price = ?";
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1,_price);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				String product_name = rs.getString(2);
+				String image = rs.getString(3);
+				int type = rs.getInt(4);
+				int color = rs.getInt(5);
+				int state = rs.getInt(6);
+				int price = rs.getInt(7);
+				String description = rs.getString(8);
+				Product product = new Product(id, product_name, image, type, color, state, price, description);
+				listProduct.add(product);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listProduct;
+	}
  	
 	public static void main(String[] args) {
 		ProductDAO productDAO = new ProductDAO();
