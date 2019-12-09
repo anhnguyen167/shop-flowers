@@ -66,17 +66,17 @@
                         <a>Quản Lý</a>
                     </li>
                     <li id="headerViewOrder">
-                        <a  href="#">
+                        <a  href="ViewOrder">
                             <span>View Order</span>
                         </a>
                     </li>
                     <li id="headerAddFlowers">
-                        <a href="ThemSP.html">
+                        <a href="nAddProduct">
                             <span>Add Flowers</span>
                         </a>
                     </li>
                     <li id="headerSignOut">
-                        <a href="HOME.html">
+                        <a href="SignOut">
                             <span>Sign Out</span>
                         </a>
                     </li>
@@ -96,12 +96,12 @@
             <ul>
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
-                        <li><a href="GetFlowersByTone?tone=1"> <b> Pink Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=2"> <b> Red Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=3"> <b> Yellow Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=4"> <b> Blue Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=5"> <b> White Tone </b> </a></li>
-                        <li><a href="GetFlowersByTone?tone=6"> <b> Orange Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager?tone=1"> <b> Pink Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager?tone=2"> <b> Red Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager?tone=3"> <b> Yellow Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager?tone=4"> <b> Blue Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager?tone=5"> <b> White Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager?tone=6"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li>

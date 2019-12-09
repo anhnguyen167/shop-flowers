@@ -57,7 +57,7 @@
                         <a>Quản Lý</a>
                     </li>
                     <li id="headerViewOrder">
-                        <a  href="#">
+                        <a  href="ViewOrder">
                             <span>View Order</span>
                         </a>
                     </li>

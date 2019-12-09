@@ -57,7 +57,7 @@
                         <a>Quản Lý</a>
                     </li>
                     <li id="headerViewOrder">
-                        <a  href="#">
+                        <a  href="ViewOrder">
                             <span>View Order</span>
                         </a>
                     </li>
@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li id="headerSignOut">
-                        <a href="HOME.html">
+                        <a href="SignOut">
                             <span>Sign Out</span>
                         </a>
                     </li>
@@ -87,12 +87,12 @@
             <ul>
                 <li><a href="#"> <b> Flowers </b> </a>
                     <ul class="sub-menu">
-                        <li><a href="#"> <b> Pink Tone </b> </a></li>
-                        <li><a href="#"> <b> Red Tone </b> </a></li>
-                        <li><a href="#"> <b> Yellow Tone </b> </a></li>
-                        <li><a href="#"> <b> Blue Tone </b> </a></li>
-                        <li><a href="#"> <b> White Tone </b> </a></li>
-                        <li><a href="#"> <b> Orange Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager"> <b> Pink Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager"> <b> Red Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager"> <b> Yellow Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager"> <b> Blue Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager"> <b> White Tone </b> </a></li>
+                        <li><a href="GetFlowerByToneInManager"> <b> Orange Tone </b> </a></li>
                     </ul>
                 </li>
                 <li><a href="ViewAllFlowerInManager?type=3"> <b> Flowers Box </b> </a></li>

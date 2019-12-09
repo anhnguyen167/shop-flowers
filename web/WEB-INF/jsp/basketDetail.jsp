@@ -16,23 +16,50 @@
         <title>Flowers Delivery | Bunches</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link href="<%= request.getContextPath()%>/css/tc.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
                 font-family: "Times New Roman", Times, serif;
             }
         </style>
+        <style>
+            body{
+                font-family: "Times New Roman", Times, serif;
+            }
+            #search-form {
+                position: relative;
+
+            }
+            .search-data.show {
+                visibility: unset;
+            }
+            .search-data {
+                position: absolute;
+                background: pink;
+                top: 40px;
+                width: 300px;
+                z-index: 100;
+                visibility: hidden;
+            }
+
+
+        </style>
     </head>
 </head>
 <body>
     <div id="header">
         <div id="left">
-            <form class="search-form">
-                <input type="text" name="search" placeholder="Search..">
-            </form>
-        </div>
+                <div class="form-inline" id="search-form">
+                    <input autocomplete="off" class="form-control mr-sm-2" type="text" placeholder="Search" size="30" id="search-input">
+                    <div class="search-data">
+                        <ul class="list-group" id="search-data">
+                        </ul>
+                    </div>
+                </div>
+            </div>
         <div id="middle">
-            <a href=""> <img src="Hoa/logo.png"> </a>
+            <a href="GetFlowers"> <img src="Hoa/logo.png"> </a>
         </div>
         <div id="right">
             <ul class="header-options">
@@ -205,4 +232,29 @@
         <image src="Hoa/footer.png" style="width: 100% ;height :30%">
     </footer>
 </body>
+<script>
+            $(function () {
+            // IT WILL BE RAN AFTER YOUR WEBSITE IS LOADED
+            $('#search-input').change(function (e) {
+            // RAN AFTER your search button is clicked
+            e.preventDefault();
+                    // prevent your page is reloaded
+                    const text = $('#search-input').val();
+                    // get text in your input
+                    $.post('/FlowersShop/SearchServlet', {text}, function (data) {
+                    $('.search-data').addClass('show');
+                            $('#search-data').empty();
+                            data.forEach(item => {
+                            const ten = item.product_name;
+                            const trangthai=item.state;
+                                    const str = '<li class="list-group-item"><a href="/FlowersShop/FlowersDetail?id=' + item.id + '">' + ten + ' Trạng thái: ' + (item.state === 1 ? 'Còn' : 'Hết') + '</a></li>';
+                                    $('#search-data').append(str);
+                            });
+                    })
+            });
+                    $('body').click(function () {
+            $('.search-data').removeClass('show');
+            })
+            })
+</script>
 </html>
