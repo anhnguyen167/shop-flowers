@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,7 +37,7 @@ public class nManager extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,21 +52,28 @@ public class nManager extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        System.out.println(request.getQueryString());
-        String categoryId;
-        response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productDAO = new ProductDAO();
-        ArrayList<Product> listSP1 = productDAO.getProductsByTypeLimit(1);
-        ArrayList<Product> listSP2 = productDAO.getProductsByTypeLimit(2);
-        ArrayList<Product> listSP3 = productDAO.getProductsByTypeLimit(3);
-        ArrayList<Product> listSP4 = productDAO.getProductsByTypeLimit(4);
-        request.setAttribute("listSP1", listSP1);
-        request.setAttribute("listSP2", listSP2);
-        request.setAttribute("listSP3", listSP3);
-        request.setAttribute("listSP4", listSP4);
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/managerIndex.jsp");
-        requestDispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                System.out.println(request.getQueryString());
+                String categoryId;
+                response.setContentType("text/html;charset=UTF-8");
+                ProductDAO productDAO = new ProductDAO();
+                ArrayList<Product> listSP1 = productDAO.getProductsByTypeLimit(1);
+                ArrayList<Product> listSP2 = productDAO.getProductsByTypeLimit(2);
+                ArrayList<Product> listSP3 = productDAO.getProductsByTypeLimit(3);
+                ArrayList<Product> listSP4 = productDAO.getProductsByTypeLimit(4);
+                request.setAttribute("listSP1", listSP1);
+                request.setAttribute("listSP2", listSP2);
+                request.setAttribute("listSP3", listSP3);
+                request.setAttribute("listSP4", listSP4);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/managerIndex.jsp");
+                requestDispatcher.forward(request, response);
+            }
+
+        }
+
     }
 
     /**
@@ -79,7 +88,7 @@ public class nManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     /**

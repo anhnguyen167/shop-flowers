@@ -7,6 +7,7 @@ package Control;
 
 import BEAN.Basket;
 import BEAN.BasketDetail;
+import BEAN.User;
 import DAO.BasketDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,27 +38,32 @@ public class nViewOrderDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = "WEB-INF/jsp/viewOrderDetail.jsp";
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            Basket basket = new Basket();
-            BasketDAO basketDAO = new BasketDAO();
-            List<Basket> list = basketDAO.getAllBasket();
-            for (int i = 0; i < list.size(); i++) {
-                if (id == list.get(i).getId()) {
-                    basket = list.get(i);
-                }
-            }
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                response.setContentType("text/html;charset=UTF-8");
+                String url = "WEB-INF/jsp/viewOrderDetail.jsp";
+                try {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Basket basket = new Basket();
+                    BasketDAO basketDAO = new BasketDAO();
+                    List<Basket> list = basketDAO.getAllBasket();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (id == list.get(i).getId()) {
+                            basket = list.get(i);
+                        }
+                    }
 //        List<BasketDetail> listBasketDetails= basket.getListBasketDetail();
 //        request.setAttribute("listBasketDetails", listBasketDetails);
-            request.setAttribute("basket", basket);
-            RequestDispatcher rq = request.getRequestDispatcher(url);
-            rq.forward(request, response);
-        } catch (Exception e) {
-            response.sendRedirect("/");
+                    request.setAttribute("basket", basket);
+                    RequestDispatcher rq = request.getRequestDispatcher(url);
+                    rq.forward(request, response);
+                } catch (Exception e) {
+                    response.sendRedirect("/");
+                }
+            }
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

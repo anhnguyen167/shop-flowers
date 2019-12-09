@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,23 +37,29 @@ public class nEditProducts extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url="WEB-INF/jsp/editProduct.jsp";
-        int id=Integer.parseInt(request.getParameter("id"));
-        ProductDAO productDAO = new ProductDAO();
-        Product product= new Product();
-        List<Product> list= productDAO.getAllProduct();
-        for(int i=0;i<list.size();i++){
-            if(id==list.get(i).getId()){
-                product= list.get(i);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                response.setContentType("text/html;charset=UTF-8");
+                String url = "WEB-INF/jsp/editProduct.jsp";
+                int id = Integer.parseInt(request.getParameter("id"));
+                ProductDAO productDAO = new ProductDAO();
+                Product product = new Product();
+                List<Product> list = productDAO.getAllProduct();
+                for (int i = 0; i < list.size(); i++) {
+                    if (id == list.get(i).getId()) {
+                        product = list.get(i);
+                    }
+                }
+                request.setAttribute("product", product);
+                RequestDispatcher rq = request.getRequestDispatcher(url);
+                rq.forward(request, response);
             }
         }
-        request.setAttribute("product", product);
-        RequestDispatcher rq= request.getRequestDispatcher(url);
-        rq.forward(request, response);
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

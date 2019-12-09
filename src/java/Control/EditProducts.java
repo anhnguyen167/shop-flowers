@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,8 +35,7 @@ public class EditProducts extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,25 +64,31 @@ public class EditProducts extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product= new Product();
-        int id = Integer.parseInt(request.getParameter("id"));
-        String product_name = (String ) request.getParameter("product_name");
-        int price = Integer.parseInt(request.getParameter("price"));
-        int type = Integer.parseInt(request.getParameter("type"));
-        int state = Integer.parseInt(request.getParameter("state"));
-        String image = request.getParameter("image");
-        String description = request.getParameter("description");
-        product.setId(id);
-        product.setProduct_name(product_name);
-        product.setPrice(price);
-        product.setType(type);
-        product.setState(state);
-        product.setImage(image);
-        product.setDescription(description);
-        System.out.println(product.getProduct_name());
-        ProductDAO productDAO= new ProductDAO();
-        productDAO.updateProduct(product);
-        response.sendRedirect("/FlowersShop/nManager");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                Product product = new Product();
+                int id = Integer.parseInt(request.getParameter("id"));
+                String product_name = (String) request.getParameter("product_name");
+                int price = Integer.parseInt(request.getParameter("price"));
+                int type = Integer.parseInt(request.getParameter("type"));
+                int state = Integer.parseInt(request.getParameter("state"));
+                String image = request.getParameter("image");
+                String description = request.getParameter("description");
+                product.setId(id);
+                product.setProduct_name(product_name);
+                product.setPrice(price);
+                product.setType(type);
+                product.setState(state);
+                product.setImage(image);
+                product.setDescription(description);
+                System.out.println(product.getProduct_name());
+                ProductDAO productDAO = new ProductDAO();
+                productDAO.updateProduct(product);
+                response.sendRedirect("/FlowersShop/nManager");
+            }
+        }
     }
 
     /**

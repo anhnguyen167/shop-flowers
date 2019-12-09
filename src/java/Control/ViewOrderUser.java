@@ -37,18 +37,20 @@ public class ViewOrderUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
             User user = (User) session.getAttribute("user");
-            BasketDAO basketDAO = new BasketDAO();
-            ArrayList<Basket> listBasket = basketDAO.getBasketByUserId(user);
-            if (listBasket == null) {
-                listBasket = new ArrayList<>();
+            if (user.getRole() == 1) {
+                BasketDAO basketDAO = new BasketDAO();
+                ArrayList<Basket> listBasket = basketDAO.getBasketByUserId(user);
+                if (listBasket == null) {
+                    listBasket = new ArrayList<>();
+                }
+                request.setAttribute("listBasket", listBasket);
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewOrderUser.jsp");
+                requestDispatcher.forward(request, response);
             }
-            request.setAttribute("listBasket", listBasket);
-            
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewOrderUser.jsp");
-            requestDispatcher.forward(request, response);
         }
     }
 
@@ -78,8 +80,6 @@ public class ViewOrderUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        
 
     }
 

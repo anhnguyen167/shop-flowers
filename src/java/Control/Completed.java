@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Basket;
+import BEAN.User;
 import DAO.BasketDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +39,7 @@ public class Completed extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,19 +68,25 @@ public class Completed extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id").toString());
-        //HttpSession session = request.getSession();
-        Basket basket = new Basket();
-        BasketDAO basketDAO = new BasketDAO();
-        List<Basket> list = basketDAO.getAllBasket();
-        for(int i=0;i<list.size();i++){
-            if(id==list.get(i).getId()){
-                basket= list.get(i);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                int id = Integer.parseInt(request.getParameter("id").toString());
+                //HttpSession session = request.getSession();
+                Basket basket = new Basket();
+                BasketDAO basketDAO = new BasketDAO();
+                List<Basket> list = basketDAO.getAllBasket();
+                for (int i = 0; i < list.size(); i++) {
+                    if (id == list.get(i).getId()) {
+                        basket = list.get(i);
+                    }
+                }
+                System.out.println("wtf");
+                basketDAO.updateState(basket);
+                response.sendRedirect("/FlowersShop/ViewOrder");
             }
         }
-        System.out.println("wtf");
-        basketDAO.updateState(basket);
-        response.sendRedirect("/FlowersShop/ViewOrder");
     }
 
     /**

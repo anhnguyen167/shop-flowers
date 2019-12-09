@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,14 +37,20 @@ public class ViewAllFlowerInManager extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        ProductDAO productDAO = new ProductDAO();
-        int type = Integer.parseInt(request.getParameter("type"));
-        ArrayList<Product> listSPA = productDAO.getProductsByType(type);
-        request.setAttribute("listSPA", listSPA);
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/viewAllFlowerInManager.jsp");
-        requestDispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                response.setContentType("text/html;charset=UTF-8");
+                response.setContentType("text/html;charset=UTF-8");
+                ProductDAO productDAO = new ProductDAO();
+                int type = Integer.parseInt(request.getParameter("type"));
+                ArrayList<Product> listSPA = productDAO.getProductsByType(type);
+                request.setAttribute("listSPA", listSPA);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewAllFlowerInManager.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -36,7 +36,7 @@ public class BookingBasket extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,28 +65,30 @@ public class BookingBasket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession();
-       if(session.getAttribute("user") == null){
-           
-           RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
-           requestDispatcher.forward(request, response);
-       }else{
-           User user = (User) session.getAttribute("user");
-           ArrayList<BasketDetail> list = new ArrayList<>();
-           list = (ArrayList<BasketDetail>) session.getAttribute("list");
-           int quantity = (int) session.getAttribute("quantity");
-           int total = 0;
-           for(BasketDetail i: list){
-               total += i.getQuantity()*i.getProduct().getPrice();
-           }
-           request.setAttribute("total", total);
-           request.setAttribute("listSPA", list);
-           session.setAttribute("user", user);
-           session.setAttribute("list", list);
-           session.setAttribute("quantity", quantity);
-           RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/bill.jsp");
-           requestDispatcher.forward(request, response);
-       }
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 1) {
+                ArrayList<BasketDetail> list = new ArrayList<>();
+                list = (ArrayList<BasketDetail>) session.getAttribute("list");
+                int quantity = (int) session.getAttribute("quantity");
+                int total = 0;
+                for (BasketDetail i : list) {
+                    total += i.getQuantity() * i.getProduct().getPrice();
+                }
+                request.setAttribute("total", total);
+                request.setAttribute("listSPA", list);
+                session.setAttribute("user", user);
+                session.setAttribute("list", list);
+                session.setAttribute("quantity", quantity);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/bill.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        }
     }
 
     /**
@@ -99,5 +101,4 @@ public class BookingBasket extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-   
 }

@@ -72,14 +72,17 @@ public class ViewOrderDetailUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
-            int id_basket = Integer.parseInt(request.getParameter("id").toString());
-            Basket basket = new Basket();
-            BasketDAO basketDAO = new BasketDAO();
-            basket = basketDAO.getLastBasket(id_basket);
-            System.out.println(basket.getUser().getFull_name());
-            request.setAttribute("basket", basket);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewOrderDetailUser.jsp");
-            requestDispatcher.forward(request, response);
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 1) {
+                int id_basket = Integer.parseInt(request.getParameter("id").toString());
+                Basket basket = new Basket();
+                BasketDAO basketDAO = new BasketDAO();
+                basket = basketDAO.getLastBasket(id_basket);
+                System.out.println(basket.getUser().getFull_name());
+                request.setAttribute("basket", basket);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/viewOrderDetailUser.jsp");
+                requestDispatcher.forward(request, response);
+            }
         }
     }
 

@@ -6,6 +6,7 @@
 package Control;
 
 import BEAN.Product;
+import BEAN.User;
 import DAO.ProductDAO;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,37 +37,42 @@ public class AddProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String product_name = (String) request.getParameter("product_name");
-        String image = (String) request.getParameter("image");
-        int type = Integer.parseInt(request.getParameter("type"));
-        int color = Integer.parseInt(request.getParameter("color"));
-        int state = Integer.parseInt(request.getParameter("state"));
-        int price = Integer.parseInt(request.getParameter("price"));
-        String decription = (String) request.getParameter("description");
-        Product product = new Product();
-        if(type==1){
-            product.setImage("/Hoa/Basket/"+image);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getRole() == 0) {
+                String product_name = (String) request.getParameter("product_name");
+                String image = (String) request.getParameter("image");
+                int type = Integer.parseInt(request.getParameter("type"));
+                int color = Integer.parseInt(request.getParameter("color"));
+                int state = Integer.parseInt(request.getParameter("state"));
+                int price = Integer.parseInt(request.getParameter("price"));
+                String decription = (String) request.getParameter("description");
+                Product product = new Product();
+                if (type == 1) {
+                    product.setImage("/Hoa/Basket/" + image);
+                }
+                if (type == 2) {
+                    product.setImage("/Hoa/Bouquets/" + image);
+                }
+                if (type == 3) {
+                    product.setImage("/Hoa/Box/" + image);
+                }
+                if (type == 4) {
+                    product.setImage("/Hoa/Shelf/" + image);
+                }
+                product.setProduct_name(product_name);
+                product.setType(type);
+                product.setColor(color);
+                product.setState(state);
+                product.setColor(price);
+                product.setDescription(decription);
+
+                ProductDAO productDAO = new ProductDAO();
+                productDAO.insertProduct(product);
+                response.sendRedirect("/FlowersShop/nManager");
+            }
         }
-        if(type==2){
-            product.setImage("/Hoa/Bouquets/"+image);
-        }
-        if(type==3){
-            product.setImage("/Hoa/Box/"+image);
-        }
-        if(type==4){
-            product.setImage("/Hoa/Shelf/"+image);
-        }
-        product.setProduct_name(product_name);
-        product.setType(type);
-        product.setColor(color);
-        product.setState(state);
-        product.setColor(price);
-        product.setDescription(decription);
-   
-        
-        ProductDAO productDAO = new ProductDAO();
-        productDAO.insertProduct(product);
-        response.sendRedirect("/FlowersShop/nManager");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
