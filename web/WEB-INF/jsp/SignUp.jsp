@@ -36,7 +36,7 @@
                         <p style="color: red;"><%= error_mail%></p>
     			<input type="text" name="email" placeholder="E-mail" required/>
                         <p style="color: red;"><%= error_phone%></p>
-    			<input type="text" name="phone" placeholder="Phone" required/>
+    			<input type="number" name="phone" placeholder="Phone" required/>
     			<input type="submit" name="signup_submit" value="Sign up" />
     		</form>
             </div>

@@ -166,7 +166,7 @@
                             <br> Số Lượng:
                         </div>
                         <div>
-                            <a class="soluong"> <input id="number-text" type="text" name="ten" style="text-align:center; width:100px;height:30px;" value="1"> </a>
+                            <a class="soluong"> <input id="number-text" type="number" name="ten" style="text-align:center; width:100px;height:30px;" value="1" min="1"> </a>
                         </div>
                     </div>
                     <div class="Arow1-row3-col2"> 
